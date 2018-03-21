@@ -22,7 +22,7 @@ class PostView: UIView {
     
     fileprivate let imgADd : UIImageView = {
         let imgADd = UIImageView()
-        imgADd.image = #imageLiteral(resourceName: "imgAdd")
+        imgADd.image = UIImage(named: "postimg")!
         imgADd.translatesAutoresizingMaskIntoConstraints = false
         return imgADd
     }()
@@ -38,6 +38,9 @@ class PostView: UIView {
     fileprivate let tbvPost : PostTableView = {
         let tbvPost = PostTableView()
         tbvPost.translatesAutoresizingMaskIntoConstraints = false
+        tbvPost.layer.cornerRadius = 7
+        tbvPost.isScrollEnabled = false
+        tbvPost.contentInset = UIEdgeInsets.zero
         return tbvPost
     }()
     
@@ -53,6 +56,7 @@ class PostView: UIView {
         let txfMore = UITextField()
         txfMore.translatesAutoresizingMaskIntoConstraints = false
         txfMore.backgroundColor = .white
+        txfMore.layer.cornerRadius = 7
         return txfMore
     }()
     
@@ -63,6 +67,7 @@ class PostView: UIView {
         //btnADd.backgroundColor = .blue
         btnADd.setTitleColor(.white , for: .normal)
         btnADd.translatesAutoresizingMaskIntoConstraints = false
+        btnADd.layer.cornerRadius = 7
         return btnADd
     }()
     
@@ -82,7 +87,7 @@ class PostView: UIView {
         
         let View = ["lblinfo" : self.lblInfo, "lblAdd" : self.lblAddImg, "imgADd" : self.imgADd, "tbv" : self.tbvPost, "lblMore" : self.lblMore, "txfMore": self.txfMore, "btnAdd" : self.btnADd] as [String : Any]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[lblAdd(30)]-3-[imgADd(90)]-7-[lblinfo(30)]-5-[tbv(125)]-5-[lblMore(30)]-5-[txfMore(60)]-30-[btnAdd(40)]", options: [], metrics: nil, views: View))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[lblAdd(30)]-3-[imgADd(90)]-7-[lblinfo(30)]-5-[tbv(125)]-5-[lblMore(30)]-5-[txfMore(60)]-20-[btnAdd(30)]", options: [], metrics: nil, views: View))
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[lblinfo]-15-|", options: [], metrics: nil, views: View))
          self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[lblAdd]-15-|", options: [], metrics: nil, views: View))

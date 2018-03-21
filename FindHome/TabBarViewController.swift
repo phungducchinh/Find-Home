@@ -67,6 +67,16 @@ class TabBarViewController: UITabBarController {
             
         }
         // Do any additional setup after loading the view.
+        
+        
+        if Connectivity.isConnectedToInternet() {
+            print("Yes! internet is available.")
+            // do some tasks..
+        }else {
+            print("Internet connection FAILED")
+            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }
     }
 
     override func didReceiveMemoryWarning() {

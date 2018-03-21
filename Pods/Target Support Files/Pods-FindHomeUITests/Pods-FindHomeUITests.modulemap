@@ -1,0 +1,6 @@
+framework module Pods_FindHomeUITests {
+  umbrella header "Pods-FindHomeUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

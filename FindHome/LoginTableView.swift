@@ -42,9 +42,6 @@ extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
         cell.txfname = holder[indexPath.row]
         cell.backgroundColor = .white
         
-        cell.txf.delegate = self
-        cell.txf.tag = indexPath.row
-        
         return cell
     }
     
@@ -60,38 +57,4 @@ extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
         return 2
     }
 
-    func textFieldDidEndEditing(textField: UITextField) {
-        print("TextField did end editing method called")
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
-        
-        if !cell.t.isEmpty // check textfield contains value or not
-        {
-            if textField.tag == 0
-            {
-                username = textField.text!
-            }
-            else
-            {
-                password = textField.text!
-            }
-        }
-        
-        func textFieldShouldReturn(textField: UITextField) -> Bool {
-            
-            textField.resignFirstResponder();
-            return true;
-        }
-        
-        func textFieldDidBeginEditing(textField: UITextField!) {
-            if textField.tag == 0
-            {
-                username = ""
-            }
-            else
-            {
-                password = ""
-            }
-        }
-
     }
-}
