@@ -36,18 +36,38 @@ class LoginTableView: UITableView {
 extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
         
-        cell.imaname = imgname[indexPath.row]
-        cell.txfname = holder[indexPath.row]
-        cell.backgroundColor = .white
         
-        return cell
+        if (indexPath.row == 0) {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            
+            cell.imaname = imgname[indexPath.row]
+            cell.txfname = holder[indexPath.row]
+            cell.backgroundColor = .white
+            
+            username = cell.txf.text!
+            return cell
+           
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            
+            cell.imaname = imgname[indexPath.row]
+            cell.txfname = holder[indexPath.row]
+            cell.backgroundColor = .white
+            
+            password = cell.txf.text!
+            return cell
+        }
+        
     }
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 40
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1;
     }
     
 //    override func numberOfRows(inSection section: Int) -> Int {

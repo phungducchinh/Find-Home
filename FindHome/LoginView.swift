@@ -61,6 +61,18 @@ class LoginView: UIView {
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[tbv]-5-|", options: [], metrics: nil, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[btnLogin]-5-|", options: [], metrics: nil, views: views))
          self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[btnFogot]-5-|", options: [], metrics: nil, views: views))
+        
+        
+        let preferences = UserDefaults.standard
+        
+        if(preferences.object(forKey: "session") != nil)
+        {
+            LoginDone()
+        }
+        else
+        {
+            LoginTodo()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,7 +83,74 @@ class LoginView: UIView {
         
         tbvLogin.reloadData()
         
+        if(tbvLogin.username == "" || tbvLogin.password == ""){
+            print("error")
+            var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }else{
+            print(tbvLogin.username)
+            print(tbvLogin.password)
+            
+            let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
+            let session = URLSession.shared
+            
+            let request = NSMutableURLRequest(url: url!)
+            request.httpMethod = "POST"
+            
+            let paramTosend = "email" + tbvLogin.username + "password" +  tbvLogin.password
+            request.httpBody = paramTosend.data(using: String.Encoding.utf8)
+            
+            let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
+                
+                guard let _:Data = data else
+                {
+                    return
+                }
+                
+                let json:Any?
+                
+                do{
+                    json = try JSONSerialization.jsonObject(with: data!, options: [])
+                }
+                catch
+                {
+                    return
+                }
+                
+                guard let server_response = json as? NSDictionary else
+                {
+                    return
+                }
+                
+                if let data_block = server_response["data"] as? NSDictionary
+                {
+                    if let session_data = data_block["session"] as? String
+                    {
+                        let preferences = UserDefaults.standard
+                        preferences.set(session_data, forKey: "session")
+                        
+                        DispatchQueue.main.sync (
+                            execute:self.LoginDone
+                        )
+                    }
+                }
+            })
+            
+            task.resume()
+            
+        }
+        
+    
      }
+    
+    func LoginDone(){
+      print("Login thanh cong")
+        
+    }
+    
+    func LoginTodo(){
+        print("Login khong thanh cong")
+    }
         
 }
 
