@@ -62,7 +62,6 @@ extension ListTableView : UITableViewDelegate, UITableViewDataSource {
         return img.count
     }
     
-   
     
     
 }

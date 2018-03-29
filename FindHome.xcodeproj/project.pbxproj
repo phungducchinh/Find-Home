@@ -34,6 +34,8 @@
 		7E601C5B2018C464001FD6BA /* FindHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C5A2018C464001FD6BA /* FindHomeTests.swift */; };
 		7E601C662018C464001FD6BA /* FindHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C652018C464001FD6BA /* FindHomeUITests.swift */; };
 		7E97CD7B205AA16100C92ABB /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E97CD7A205AA16100C92ABB /* PostCell.swift */; };
+		7E9A347E206A2BCE00E9D829 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */; };
+		7E9A3480206A2F0F00E9D829 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A347F206A2F0F00E9D829 /* DetailView.swift */; };
 		CE2BE3288BAF797A56FA06A1 /* Pods_FindHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09AD0DA20982B4E89CD5589E /* Pods_FindHome.framework */; };
 		EC49B6A90ABBD83F344376B8 /* Pods_FindHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DC4C65828BA945B9FD9BC4 /* Pods_FindHomeTests.framework */; };
 /* End PBXBuildFile section */
@@ -93,6 +95,8 @@
 		7E601C652018C464001FD6BA /* FindHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindHomeUITests.swift; sourceTree = "<group>"; };
 		7E601C672018C464001FD6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E97CD7A205AA16100C92ABB /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../../../Download/PostCell.swift; sourceTree = "<group>"; };
+		7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7E9A347F206A2F0F00E9D829 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		B2B3E35CBB5F081112AD7722 /* Pods-FindHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHome/Pods-FindHome.release.xcconfig"; sourceTree = "<group>"; };
 		D892388AE05CDCBF5738C3D7 /* Pods-FindHomeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHomeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHomeUITests/Pods-FindHomeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9857B9CD7581E4B09AB39F8 /* Pods-FindHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindHome/Pods-FindHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +217,7 @@
 				7E5D6EB920629AC5001737B6 /* Connectivity.swift */,
 				7E601C492018C464001FD6BA /* FindHome.xcdatamodeld */,
 				7E394D912062212B0038A330 /* Info.plist */,
+				7E9A347A206A2B1800E9D829 /* DetailView */,
 				7E46E99C205FF1F100441BC7 /* ListView */,
 				7E46E99D205FF20100441BC7 /* HIstoryView */,
 				7E46E99E205FF21900441BC7 /* LoginView */,
@@ -237,6 +242,15 @@
 				7E601C672018C464001FD6BA /* Info.plist */,
 			);
 			path = FindHomeUITests;
+			sourceTree = "<group>";
+		};
+		7E9A347A206A2B1800E9D829 /* DetailView */ = {
+			isa = PBXGroup;
+			children = (
+				7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */,
+				7E9A347F206A2F0F00E9D829 /* DetailView.swift */,
+			);
+			name = DetailView;
 			sourceTree = "<group>";
 		};
 		8A69F39D5C5996563354F006 /* Pods */ = {
@@ -550,6 +564,7 @@
 			files = (
 				7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */,
 				7E394D78206220820038A330 /* PostViewController.swift in Sources */,
+				7E9A347E206A2BCE00E9D829 /* DetailViewController.swift in Sources */,
 				7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */,
 				7E394D7620621FA80038A330 /* PostView.swift in Sources */,
 				7E5D6ECB2062B4B9001737B6 /* LoginView.swift in Sources */,
@@ -559,6 +574,7 @@
 				7E394D98206221550038A330 /* ViewController.swift in Sources */,
 				7E394D86206220FD0038A330 /* HistoryTableView.swift in Sources */,
 				7E394D87206220FD0038A330 /* HistoryView.swift in Sources */,
+				7E9A3480206A2F0F00E9D829 /* DetailView.swift in Sources */,
 				7E394D96206221550038A330 /* AppDelegate.swift in Sources */,
 				7E394D97206221550038A330 /* TabBarViewController.swift in Sources */,
 				7E394D8D206221100038A330 /* ListCell.swift in Sources */,

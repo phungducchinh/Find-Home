@@ -26,7 +26,7 @@ class ListView: UIView{
         self.addSubview(tbvListView)
         //self.addSubview(btnBack)
         //btnBack.addTarget(self, action: #selector(BackView), for: .touchUpInside)
-        self.tbvListView.allowsSelection = false
+        self.tbvListView.allowsSelection = true
         let views = ["tbv" : self.tbvListView]
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[tbv]-0-|", options: [], metrics: nil, views: views))
