@@ -9,22 +9,22 @@
 import Foundation
 import UIKit
 
-class LoginTableView: UITableView {
+class RegisterTableView: UITableView {
     
     var username = ""
     var password = ""
     
-    var imgname = [UIImage(named: "user")!,UIImage(named: "pass")! ]
-    var holder = ["Email/Số điện thoại", "Mật khẩu" ]
+    var imgname = [UIImage(named: "user")!,UIImage(named: "pass")!, UIImage(named: "pass")! ]
+    var holder = ["Email/Số điện thoại", "Mật khẩu", "Nhập lại mật khẩu" ]
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         
         self.dataSource = self
         self.delegate = self
-        self.register(LoginCell.self, forCellReuseIdentifier: "Cell")
+        self.register(RegisterCell.self, forCellReuseIdentifier: "Cell")
         
-      
+        
         
     }
     
@@ -33,13 +33,13 @@ class LoginTableView: UITableView {
     }
 }
 
-extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
+extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         
         if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
             
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
@@ -47,9 +47,9 @@ extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
             
             username = cell.txf.text!
             return cell
-           
+            
         }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
             
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
@@ -70,11 +70,11 @@ extension LoginTableView : UITableViewDelegate, UITableViewDataSource {
         return 1;
     }
     
-//    override func numberOfRows(inSection section: Int) -> Int {
-//        return 1    }
+    //    override func numberOfRows(inSection section: Int) -> Int {
+    //        return 1    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return
     }
-
-    }
+    
+}

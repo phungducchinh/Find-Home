@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: UIViewController{
+class RegisterViewController: UIViewController{
     let login = LoginView()
     
     override func viewDidLoad() {
@@ -17,8 +17,9 @@ class LoginViewController: UIViewController{
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.view = self.login
-        navigationItem.title = "Đăng nhập"
-        
+        navigationController?.navigationItem.title = "Đăng ký"
+        //self.navigationItem.title = "Đăng nhập"
+        //self.navigationController?.navigationBar.topItem?.title = "Đăng Nhập"
         if Connectivity.isConnectedToInternet() {
             print("Yes! internet is available.")
             // do some tasks..
