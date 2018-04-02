@@ -38,13 +38,16 @@ extension HistoryTableView : UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
         
         cell.img = img[indexPath.row]
+        cell.title = titleN[indexPath.row]
         cell.address = address[indexPath.row]
         cell.money = money[indexPath.row]
         cell.acreage = acreage[indexPath.row]
-        cell.title = titleN[indexPath.row]
         cell.backgroundColor = .white
+        
+        
         return cell
     }
+    
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -63,6 +66,22 @@ extension HistoryTableView : UITableViewDelegate, UITableViewDataSource {
     }
     
     
-    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        
+        let edit = UITableViewRowAction(style: .normal, title: "Sửa") { action, index in
+            //self.isEditing = false
+            print("edit button tapped")
+        }
+        edit.backgroundColor = .red
+        let delete = UITableViewRowAction(style: .normal, title: "Xoá") { action, index in
+            //self.isEditing = false
+            print("delete button tapped")
+        }
+        delete.backgroundColor = .red
+        
+        return [edit, delete]
+        
+
+    }
     
 }

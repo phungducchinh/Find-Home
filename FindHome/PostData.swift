@@ -7,3 +7,9 @@
 //
 
 import Foundation
+import UIKit
+struct PostData {
+    var imageList : [UIImage]
+    var info : PostInfo
+    var more :  String
+}

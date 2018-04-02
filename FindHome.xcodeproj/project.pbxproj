@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		5B0D017ED5E2186E42E1A7E1 /* Pods_FindHomeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABD09498190217539D5D4BE /* Pods_FindHomeUITests.framework */; };
+		7E03B7DE207274D800F44CD1 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DD207274D800F44CD1 /* PostData.swift */; };
+		7E03B7E020727A6A00F44CD1 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */; };
 		7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7320621F9C0038A330 /* PostTableView.swift */; };
 		7E394D7620621FA80038A330 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7520621FA80038A330 /* PostView.swift */; };
-		7E394D78206220820038A330 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D77206220820038A330 /* PostViewController.swift */; };
 		7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7C206220BC0038A330 /* LoginViewController.swift */; };
 		7E394D85206220FD0038A330 /* HistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D81206220FD0038A330 /* HistoryCell.swift */; };
 		7E394D86206220FD0038A330 /* HistoryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D82206220FD0038A330 /* HistoryTableView.swift */; };
@@ -25,17 +26,21 @@
 		7E394D97206221550038A330 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D94206221550038A330 /* TabBarViewController.swift */; };
 		7E394D98206221550038A330 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D95206221550038A330 /* ViewController.swift */; };
 		7E394D9A2062218F0038A330 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E394D992062218F0038A330 /* Assets.xcassets */; };
+		7E3B1004206FE97B007E002C /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3B1003206FE97B007E002C /* PostViewController.swift */; };
 		7E5D6EBA20629AC5001737B6 /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D6EB920629AC5001737B6 /* Connectivity.swift */; };
-		7E5D6EC92062B4B9001737B6 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D6EC52062B4B9001737B6 /* LoginCell.swift */; };
 		7E5D6ECB2062B4B9001737B6 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D6EC72062B4B9001737B6 /* LoginView.swift */; };
 		7E5D6ECF2062B5C0001737B6 /* LoginTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E5D6ECE2062B5C0001737B6 /* LoginTableView.swift */; };
 		7E601C4B2018C464001FD6BA /* FindHome.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C492018C464001FD6BA /* FindHome.xcdatamodeld */; };
 		7E601C502018C464001FD6BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E601C4E2018C464001FD6BA /* LaunchScreen.storyboard */; };
 		7E601C5B2018C464001FD6BA /* FindHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C5A2018C464001FD6BA /* FindHomeTests.swift */; };
 		7E601C662018C464001FD6BA /* FindHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C652018C464001FD6BA /* FindHomeUITests.swift */; };
+		7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B329A206FDF04003D5D84 /* DetailViewController.swift */; };
 		7E97CD7B205AA16100C92ABB /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E97CD7A205AA16100C92ABB /* PostCell.swift */; };
-		7E9A347E206A2BCE00E9D829 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */; };
-		7E9A3480206A2F0F00E9D829 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E9A347F206A2F0F00E9D829 /* DetailView.swift */; };
+		7EC3209C206E8B340074F9D6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32098206E8B340074F9D6 /* RegisterView.swift */; };
+		7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32099206E8B340074F9D6 /* RegisterViewController.swift */; };
+		7EC3209F206E8F510074F9D6 /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3209E206E8F510074F9D6 /* RegisterCell.swift */; };
+		7EC320A1206E8FAC0074F9D6 /* RegisterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC320A0206E8FAC0074F9D6 /* RegisterTableView.swift */; };
+		7EC320A3206E965C0074F9D6 /* LoginCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC320A2206E965C0074F9D6 /* LoginCell.swift */; };
 		CE2BE3288BAF797A56FA06A1 /* Pods_FindHome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09AD0DA20982B4E89CD5589E /* Pods_FindHome.framework */; };
 		EC49B6A90ABBD83F344376B8 /* Pods_FindHomeTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DC4C65828BA945B9FD9BC4 /* Pods_FindHomeTests.framework */; };
 /* End PBXBuildFile section */
@@ -64,9 +69,10 @@
 		1ABD09498190217539D5D4BE /* Pods_FindHomeUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindHomeUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		30F3BC21917C434CCD46F447 /* Pods-FindHomeUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHomeUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindHomeUITests/Pods-FindHomeUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5507AA84017C3AE7FA8CBDAD /* Pods-FindHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHomeTests/Pods-FindHomeTests.release.xcconfig"; sourceTree = "<group>"; };
+		7E03B7DD207274D800F44CD1 /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
+		7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
 		7E394D7320621F9C0038A330 /* PostTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableView.swift; sourceTree = "<group>"; };
 		7E394D7520621FA80038A330 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
-		7E394D77206220820038A330 /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		7E394D7C206220BC0038A330 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		7E394D81206220FD0038A330 /* HistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryCell.swift; sourceTree = "<group>"; };
 		7E394D82206220FD0038A330 /* HistoryTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryTableView.swift; sourceTree = "<group>"; };
@@ -81,8 +87,8 @@
 		7E394D94206221550038A330 /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		7E394D95206221550038A330 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7E394D992062218F0038A330 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E3B1003206FE97B007E002C /* PostViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		7E5D6EB920629AC5001737B6 /* Connectivity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
-		7E5D6EC52062B4B9001737B6 /* LoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		7E5D6EC72062B4B9001737B6 /* LoginView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7E5D6ECE2062B5C0001737B6 /* LoginTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableView.swift; sourceTree = "<group>"; };
 		7E601C3F2018C464001FD6BA /* FindHome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FindHome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -94,9 +100,13 @@
 		7E601C612018C464001FD6BA /* FindHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindHomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E601C652018C464001FD6BA /* FindHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindHomeUITests.swift; sourceTree = "<group>"; };
 		7E601C672018C464001FD6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E8B329A206FDF04003D5D84 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7E97CD7A205AA16100C92ABB /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../../../Download/PostCell.swift; sourceTree = "<group>"; };
-		7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		7E9A347F206A2F0F00E9D829 /* DetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		7EC32098206E8B340074F9D6 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		7EC32099206E8B340074F9D6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		7EC3209E206E8F510074F9D6 /* RegisterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
+		7EC320A0206E8FAC0074F9D6 /* RegisterTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterTableView.swift; sourceTree = "<group>"; };
+		7EC320A2206E965C0074F9D6 /* LoginCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCell.swift; sourceTree = "<group>"; };
 		B2B3E35CBB5F081112AD7722 /* Pods-FindHome.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHome.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHome/Pods-FindHome.release.xcconfig"; sourceTree = "<group>"; };
 		D892388AE05CDCBF5738C3D7 /* Pods-FindHomeUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHomeUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHomeUITests/Pods-FindHomeUITests.release.xcconfig"; sourceTree = "<group>"; };
 		F9857B9CD7581E4B09AB39F8 /* Pods-FindHome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-FindHome/Pods-FindHome.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,10 +175,10 @@
 		7E46E99E205FF21900441BC7 /* LoginView */ = {
 			isa = PBXGroup;
 			children = (
-				7E5D6EC52062B4B9001737B6 /* LoginCell.swift */,
 				7E5D6EC72062B4B9001737B6 /* LoginView.swift */,
 				7E5D6ECE2062B5C0001737B6 /* LoginTableView.swift */,
 				7E394D7C206220BC0038A330 /* LoginViewController.swift */,
+				7EC320A2206E965C0074F9D6 /* LoginCell.swift */,
 			);
 			name = LoginView;
 			sourceTree = "<group>";
@@ -176,7 +186,7 @@
 		7E46E99F205FF22900441BC7 /* PostView */ = {
 			isa = PBXGroup;
 			children = (
-				7E394D77206220820038A330 /* PostViewController.swift */,
+				7E3B1003206FE97B007E002C /* PostViewController.swift */,
 				7E394D7320621F9C0038A330 /* PostTableView.swift */,
 				7E394D7520621FA80038A330 /* PostView.swift */,
 				7E97CD7A205AA16100C92ABB /* PostCell.swift */,
@@ -220,8 +230,11 @@
 				7E9A347A206A2B1800E9D829 /* DetailView */,
 				7E46E99C205FF1F100441BC7 /* ListView */,
 				7E46E99D205FF20100441BC7 /* HIstoryView */,
+				7EC32095206E8B0A0074F9D6 /* RegisterView */,
 				7E46E99E205FF21900441BC7 /* LoginView */,
 				7E46E99F205FF22900441BC7 /* PostView */,
+				7E03B7DD207274D800F44CD1 /* PostData.swift */,
+				7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */,
 			);
 			path = FindHome;
 			sourceTree = "<group>";
@@ -247,10 +260,20 @@
 		7E9A347A206A2B1800E9D829 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				7E9A347D206A2BCE00E9D829 /* DetailViewController.swift */,
-				7E9A347F206A2F0F00E9D829 /* DetailView.swift */,
+				7E8B329A206FDF04003D5D84 /* DetailViewController.swift */,
 			);
 			name = DetailView;
+			sourceTree = "<group>";
+		};
+		7EC32095206E8B0A0074F9D6 /* RegisterView */ = {
+			isa = PBXGroup;
+			children = (
+				7EC32098206E8B340074F9D6 /* RegisterView.swift */,
+				7EC32099206E8B340074F9D6 /* RegisterViewController.swift */,
+				7EC3209E206E8F510074F9D6 /* RegisterCell.swift */,
+				7EC320A0206E8FAC0074F9D6 /* RegisterTableView.swift */,
+			);
+			name = RegisterView;
 			sourceTree = "<group>";
 		};
 		8A69F39D5C5996563354F006 /* Pods */ = {
@@ -562,24 +585,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */,
+				7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */,
 				7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */,
-				7E394D78206220820038A330 /* PostViewController.swift in Sources */,
-				7E9A347E206A2BCE00E9D829 /* DetailViewController.swift in Sources */,
 				7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */,
 				7E394D7620621FA80038A330 /* PostView.swift in Sources */,
 				7E5D6ECB2062B4B9001737B6 /* LoginView.swift in Sources */,
 				7E394D88206220FD0038A330 /* HistoryViewController.swift in Sources */,
+				7EC320A1206E8FAC0074F9D6 /* RegisterTableView.swift in Sources */,
+				7EC320A3206E965C0074F9D6 /* LoginCell.swift in Sources */,
+				7EC3209F206E8F510074F9D6 /* RegisterCell.swift in Sources */,
 				7E394D85206220FD0038A330 /* HistoryCell.swift in Sources */,
 				7E394D8F206221100038A330 /* ListView.swift in Sources */,
+				7EC3209C206E8B340074F9D6 /* RegisterView.swift in Sources */,
 				7E394D98206221550038A330 /* ViewController.swift in Sources */,
 				7E394D86206220FD0038A330 /* HistoryTableView.swift in Sources */,
+				7E03B7E020727A6A00F44CD1 /* PostInfo.swift in Sources */,
 				7E394D87206220FD0038A330 /* HistoryView.swift in Sources */,
-				7E9A3480206A2F0F00E9D829 /* DetailView.swift in Sources */,
 				7E394D96206221550038A330 /* AppDelegate.swift in Sources */,
+				7E3B1004206FE97B007E002C /* PostViewController.swift in Sources */,
 				7E394D97206221550038A330 /* TabBarViewController.swift in Sources */,
+				7E03B7DE207274D800F44CD1 /* PostData.swift in Sources */,
 				7E394D8D206221100038A330 /* ListCell.swift in Sources */,
 				7E601C4B2018C464001FD6BA /* FindHome.xcdatamodeld in Sources */,
-				7E5D6EC92062B4B9001737B6 /* LoginCell.swift in Sources */,
 				7E97CD7B205AA16100C92ABB /* PostCell.swift in Sources */,
 				7E394D8E206221100038A330 /* ListTableView.swift in Sources */,
 				7E5D6ECF2062B5C0001737B6 /* LoginTableView.swift in Sources */,
@@ -734,7 +762,7 @@
 				DEVELOPMENT_TEAM = 59XQK7E67T;
 				INFOPLIST_FILE = FindHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PTIT.FindHome;
+				PRODUCT_BUNDLE_IDENTIFIER = FindHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -748,7 +776,7 @@
 				DEVELOPMENT_TEAM = 59XQK7E67T;
 				INFOPLIST_FILE = FindHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = PTIT.FindHome;
+				PRODUCT_BUNDLE_IDENTIFIER = FindHome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};

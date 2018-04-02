@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+struct PostInfo {
+    var title : String
+    var price : String
+    var area : String
+    var address : String
+    var phone : String
+}

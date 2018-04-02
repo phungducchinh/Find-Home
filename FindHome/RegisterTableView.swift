@@ -13,6 +13,7 @@ class RegisterTableView: UITableView {
     
     var username = ""
     var password = ""
+    var passwordagain = ""
     
     var imgname = [UIImage(named: "user")!,UIImage(named: "pass")!, UIImage(named: "pass")! ]
     var holder = ["Email/Số điện thoại", "Mật khẩu", "Nhập lại mật khẩu" ]
@@ -48,7 +49,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             username = cell.txf.text!
             return cell
             
-        }else {
+        }else if (indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
             
             cell.imaname = imgname[indexPath.row]
@@ -56,6 +57,15 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .white
             
             password = cell.txf.text!
+            return cell
+        }else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
+            
+            cell.imaname = imgname[indexPath.row]
+            cell.txfname = holder[indexPath.row]
+            cell.backgroundColor = .white
+            
+            passwordagain = cell.txf.text!
             return cell
         }
         
@@ -74,7 +84,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
     //        return 1    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return
+        return 3
     }
     
 }

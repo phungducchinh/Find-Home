@@ -11,6 +11,9 @@ import UIKit
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     var imageList = [UIImage]()
     
+    var data = PostData(imageList: [UIImage(named: "1")!], info: PostInfo(title: "abc", price: "avc", area: "acc", address: "aa", phone: "sfe"), more: "asda")
+    var info = PostInfo(title: "sasdas", price: "asdad", area: "asda", address: "asda", phone: "asdd")
+    
     //let postView = PostView()
     fileprivate let lblAddImg : UILabel = {
         let lblAddImg = UILabel()
@@ -161,25 +164,31 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func actionPost()
     {
+        //let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
         let destination = DetailViewController() // Your destination
+        data.imageList = imageList
+        data.info = tbvPost.infotbv
+        data.more = txfMore.text!
+        destination.dataD = data
         navigationController?.pushViewController(destination, animated: true)
+        
     }
     
     fileprivate let image1 : UIImageView = {
         var image1 = UIImageView()
-        image1.image = #imageLiteral(resourceName: "placeholder")
+        image1.image = UIImage(named: "placeholderimg")
         image1.translatesAutoresizingMaskIntoConstraints = false
         return image1
     }()
     fileprivate let image2 : UIImageView = {
         var image2 = UIImageView()
-        image2.image = #imageLiteral(resourceName: "placeholder")
+        image2.image = UIImage(named: "placeholderimg")
         image2.translatesAutoresizingMaskIntoConstraints = false
         return image2
     }()
     fileprivate let image3 : UIImageView = {
         var image3 = UIImageView()
-        image3.image = #imageLiteral(resourceName: "placeholder")
+        image3.image = UIImage(named: "placeholderimg")
         image3.translatesAutoresizingMaskIntoConstraints = false
         return image3
     }()
@@ -196,6 +205,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(image1)
         view.addSubview(image2)
         view.addSubview(image3)
+        
+        tbvPost.register(PostCell.self, forCellReuseIdentifier: "Cell")
 
         let View = ["lblinfo" : self.lblInfo, "lblAdd" : self.lblAddImg, "imgADd" : self.imgADd, "tbv" : self.tbvPost, "lblMore" : self.lblMore, "txfMore": self.txfMore, "btnAdd" : self.btnADd, "img1" : self.image1, "img2" : self.image2, "img3" : self.image3] as [String : Any]
         

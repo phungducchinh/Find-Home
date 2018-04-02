@@ -1,3 +1,11 @@
+//
+//  PostCell.swift
+//  PhongTroOnline
+//
+//  Created by TaNhi on 3/13/18.
+//  Copyright © 2018 TaNhi. All rights reserved.
+// edit by ducchinh
+
 import Foundation
 import UIKit
 

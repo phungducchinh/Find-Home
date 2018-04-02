@@ -34,8 +34,10 @@ class ListViewController: UIViewController {
         tbvListView.delegate = self
         tbvListView.register(ListCell.self, forCellReuseIdentifier: "Cell")
         
-        navigationItem.title = "Tìm nhà trọ"
-        
+        navigationController?.navigationItem.title = "Đăng bài"
+        //self.navigationItem.title = "Tìm nhà trọ"
+        //self.navigationController?.navigationBar.topItem?.title = "Tìm nhà trọ"
+
         self.tbvListView.allowsSelection = true
         
         let views = ["tbv" : self.tbvListView]
@@ -87,8 +89,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("tab tab tab")
-        let destination = DetailViewController() // Your destination
-        navigationController?.pushViewController(destination, animated: true)
+        let vc = DetailViewController() // Your destination
+        navigationController?.pushViewController(vc, animated: true)
     }
     
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 class RegisterViewController: UIViewController{
-    let login = LoginView()
+    let login = RegisterView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,7 +17,7 @@ class RegisterViewController: UIViewController{
         self.automaticallyAdjustsScrollViewInsets = false
         
         self.view = self.login
-        navigationController?.navigationItem.title = "Đăng ký"
+        //navigationController?.navigationItem.title = "Đăng ký"
         //self.navigationItem.title = "Đăng nhập"
         //self.navigationController?.navigationBar.topItem?.title = "Đăng Nhập"
         if Connectivity.isConnectedToInternet() {

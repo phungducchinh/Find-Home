@@ -14,6 +14,7 @@ class ListCell: UITableViewCell {
     fileprivate let imgHome : UIImageView = {
         let imgHome   =  UIImageView()
         imgHome.translatesAutoresizingMaskIntoConstraints = false
+        imgHome.layer.cornerRadius = 7
         return imgHome
     }()
     
@@ -116,13 +117,13 @@ class ListCell: UITableViewCell {
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[img(80)]", options: [], metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-5-[lbltitle(20)]-5-[lblMoney(15)]-5-[lblAcreage(15)]-5-[lblAddress]", options: [], metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lbltitle]-3-[imgtien(17)]-3-[imgAcreage(20)]", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[lbltitle]-3-[imgtien(17)]-3-[imgAcreage(17)]", options: [], metrics: nil, views: views))
         
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[img(80)]-5-[lbltitle]-5-|", options: [], metrics: nil, views: views))
         
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[img]-7-[imgtien(17)]-5-[lblMoney]-5-|", options: [], metrics: nil, views: views))
-        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[img]-5-[imgAcreage(20)]-5-[lblAcreage]-5-|", options: [], metrics: nil, views: views))
+        contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[img]-7-[imgAcreage(17)]-5-[lblAcreage]-5-|", options: [], metrics: nil, views: views))
         contentView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[img(80)]-5-[lblAddress]-5-|", options: [], metrics: nil, views: views))
     }
     

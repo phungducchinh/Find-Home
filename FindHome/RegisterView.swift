@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-class LoginView: UIView {
+class RegisterView: UIView {
     
-    fileprivate let tbvLogin : LoginTableView = {
-        let tbvLogin = LoginTableView()
+    fileprivate let tbvLogin : RegisterTableView = {
+        let tbvLogin = RegisterTableView()
         tbvLogin.translatesAutoresizingMaskIntoConstraints = false
         tbvLogin.layer.cornerRadius = 7
         tbvLogin.isScrollEnabled = false
@@ -23,7 +23,7 @@ class LoginView: UIView {
     fileprivate let btnLogin : UIButton = {
         let btnLogin = UIButton()
         btnLogin.translatesAutoresizingMaskIntoConstraints = false
-        btnLogin.setTitle("Đăng nhập", for: .normal)
+        btnLogin.setTitle("Đăng ký", for: .normal)
         btnLogin.setTitleColor(.white, for: .normal)
         btnLogin.titleLabel?.font = btnLogin.titleLabel?.font.withSize(17)
         btnLogin.layer.cornerRadius = 7
@@ -56,7 +56,7 @@ class LoginView: UIView {
         self.tbvLogin.allowsSelection = false
         let views = ["tbv" : self.tbvLogin, "btnLogin" : self.btnLogin, "btnFogot" : self.btnFogotPass] as [String : Any]
         
-        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-80-[tbv(80)]-40-[btnLogin(40)]-5-[btnFogot(40)]", options: [], metrics: nil, views: views))
+        self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-80-[tbv(120)]-40-[btnLogin(40)]-5-[btnFogot(40)]", options: [], metrics: nil, views: views))
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[tbv]-5-|", options: [], metrics: nil, views: views))
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-5-[btnLogin]-5-|", options: [], metrics: nil, views: views))
@@ -83,13 +83,14 @@ class LoginView: UIView {
         
         tbvLogin.reloadData()
         
-        if(tbvLogin.username == "" || tbvLogin.password == ""){
+        if(tbvLogin.username == "" || tbvLogin.password == "" || tbvLogin.passwordagain == ""){
             print("error")
             var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }else{
             print(tbvLogin.username)
             print(tbvLogin.password)
+            print(tbvLogin.passwordagain)
             
             let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
             let session = URLSession.shared

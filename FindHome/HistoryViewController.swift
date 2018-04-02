@@ -10,9 +10,25 @@ import UIKit
 
 class HistoryViewController: UIViewController {
 
+    
+    let history : HistoryView = {
+        let history = HistoryView()
+        history.translatesAutoresizingMaskIntoConstraints = false
+        return history
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        view.addSubview(history)
+        
+        let views = ["tbv" : self.history]
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[tbv]-0-|", options: [], metrics: nil, views: views))
+        
+        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tbv]-0-|", options: [], metrics: nil, views: views))
+
+        
+        navigationItem.title = "Các tin đã đăng"
         // Do any additional setup after loading the view.
     }
 
