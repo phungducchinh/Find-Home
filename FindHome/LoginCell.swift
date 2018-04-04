@@ -11,6 +11,8 @@ import UIKit
 
 class LoginCell: UITableViewCell{
     
+    public var txftext = ""
+    
     fileprivate let img : UIImageView = {
         let img = UIImageView()
         img.translatesAutoresizingMaskIntoConstraints = false
@@ -21,6 +23,7 @@ class LoginCell: UITableViewCell{
         let txf = UITextField()
         txf.translatesAutoresizingMaskIntoConstraints = false
         txf.font = txf.font?.withSize(15)
+        txf.text = ""
         return txf
     }()
     
@@ -42,9 +45,13 @@ class LoginCell: UITableViewCell{
         }
     }
     
+    public func  getText() {
+        txftext = txf.text!
+    }
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+        getText()
         contentView.addSubview(img)
         contentView.addSubview(txf)
         contentView.layer.cornerRadius = 7

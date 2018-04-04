@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+//import swi
 
 class LoginViewController: UIViewController{
     let login = LoginView()
@@ -18,7 +20,7 @@ class LoginViewController: UIViewController{
     var holder = ["Email/Số điện thoại", "Mật khẩu" ]
 
     
-    fileprivate let tbvLogin : LoginTableView = {
+    public let tbvLogin : LoginTableView = {
         let tbvLogin = LoginTableView()
         tbvLogin.translatesAutoresizingMaskIntoConstraints = false
         tbvLogin.layer.cornerRadius = 7
@@ -45,7 +47,7 @@ class LoginViewController: UIViewController{
         btnRegister.setTitle("Đăng ký", for: .normal)
         btnRegister.setTitleColor(.white, for: .normal)
         btnRegister.titleLabel?.font = btnRegister.titleLabel?.font.withSize(15)
-        btnRegister.addTarget(self, action: #selector(RegisterButtonTapped), for: .touchUpInside)
+        btnRegister.addTarget(self, action: #selector(RegisterButtonTapped), for: .touchDown)
         btnRegister.backgroundColor = nil
         return btnRegister
     }()
@@ -68,7 +70,7 @@ class LoginViewController: UIViewController{
             var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
             alert.show()
         }
-
+        tbvLogin.reloadData()
         view.addSubview(tbvLogin)
         view.addSubview(btnLogin)
         view.addSubview(btnRegister)
@@ -100,66 +102,44 @@ class LoginViewController: UIViewController{
     func signInButtonTapped() {
         
         tbvLogin.reloadData()
-        let destination = TabBarViewController() // Your destination
-        navigationController?.pushViewController(destination, animated: true)
-        
-//        if(tbvLogin.username == "" || tbvLogin.password == ""){
-//            print("error")
-//            var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
-//            alert.show()
-//        }else{
-//            print(tbvLogin.username)
-//            print(tbvLogin.password)
-//            
-//            let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
-//            let session = URLSession.shared
-//            
-//            let request = NSMutableURLRequest(url: url!)
-//            request.httpMethod = "POST"
-//            
-//            let paramTosend = "email" + tbvLogin.username + "password" +  tbvLogin.password
-//            request.httpBody = paramTosend.data(using: String.Encoding.utf8)
-//            
-//            let task = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) in
-//                
-//                guard let _:Data = data else
-//                {
-//                    return
-//                }
-//                
-//                let json:Any?
-//                
-//                do{
-//                    json = try JSONSerialization.jsonObject(with: data!, options: [])
-//                }
-//                catch
-//                {
-//                    return
-//                }
-//                
-//                guard let server_response = json as? NSDictionary else
-//                {
-//                    return
-//                }
-//                
-//                if let data_block = server_response["data"] as? NSDictionary
-//                {
-//                    if let session_data = data_block["session"] as? String
-//                    {
-//                        let preferences = UserDefaults.standard
-//                        preferences.set(session_data, forKey: "session")
-//                        
-//                        DispatchQueue.main.sync (
-//                            execute:self.LoginDone
-//                        )
-//                    }
-//                }
-//            })
-//            
-//            task.resume()
-//            
-//        }
+       // let destination = TabBarViewController() // Your destination
+        //navigationController?.pushViewController(destination, animated: true)
 
+        let email = username.lowercased()
+        let pass = password.lowercased()
+        
+        if(email == "" || pass == ""){
+            print("error")
+            var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
+            alert.show()
+        }else{
+            print(email)
+            print(pass)
+            
+            let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
+            Alamofire.request(url!, method: .post, parameters: ["email":email,"password":pass], encoding: URLEncoding.httpBody).responseJSON { response in
+                if let json = response.result.value as? [String: Any]
+                {
+                    let dicJson = json as NSDictionary
+                    print(dicJson)
+                    let stt =  (dicJson["status"] as? Bool)! //dicJson["message"] as? String
+                    print(stt)
+                    
+                    if (stt == false ) {
+                        print("sai thong tin")
+                        let alert = UIAlertView(title: "Thông tin đăng nhập chưa đúng", message: "Vui lòng nhập lại", delegate: nil, cancelButtonTitle: "OK")
+                        alert.show()
+                    }else
+                    {
+                        let name = dicJson["data"] as? [String: Any]//.value(forKey:"api_token")
+                        print(name?["api_token"])
+                        let alert = UIAlertView(title: "Chúc mừng", message: "Login thành công", delegate: nil, cancelButtonTitle: "OK")
+                        alert.show()
+                    }
+                    
+                }
+            }
+        }
     }
     func RegisterButtonTapped() {
         print("next to view dang ky")
