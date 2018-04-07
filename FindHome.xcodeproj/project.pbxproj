@@ -10,6 +10,7 @@
 		5B0D017ED5E2186E42E1A7E1 /* Pods_FindHomeUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABD09498190217539D5D4BE /* Pods_FindHomeUITests.framework */; };
 		7E03B7DE207274D800F44CD1 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DD207274D800F44CD1 /* PostData.swift */; };
 		7E03B7E020727A6A00F44CD1 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */; };
+		7E21060920787FF50095F8E7 /* MyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21060820787FF50095F8E7 /* MyApi.swift */; };
 		7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7320621F9C0038A330 /* PostTableView.swift */; };
 		7E394D7620621FA80038A330 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7520621FA80038A330 /* PostView.swift */; };
 		7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7C206220BC0038A330 /* LoginViewController.swift */; };
@@ -71,6 +72,7 @@
 		5507AA84017C3AE7FA8CBDAD /* Pods-FindHomeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FindHomeTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FindHomeTests/Pods-FindHomeTests.release.xcconfig"; sourceTree = "<group>"; };
 		7E03B7DD207274D800F44CD1 /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
+		7E21060820787FF50095F8E7 /* MyApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApi.swift; sourceTree = "<group>"; };
 		7E394D7320621F9C0038A330 /* PostTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableView.swift; sourceTree = "<group>"; };
 		7E394D7520621FA80038A330 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		7E394D7C206220BC0038A330 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -223,10 +225,11 @@
 				7E394D94206221550038A330 /* TabBarViewController.swift */,
 				7E394D992062218F0038A330 /* Assets.xcassets */,
 				7E394D95206221550038A330 /* ViewController.swift */,
-				7E601C4E2018C464001FD6BA /* LaunchScreen.storyboard */,
 				7E5D6EB920629AC5001737B6 /* Connectivity.swift */,
+				7E601C4E2018C464001FD6BA /* LaunchScreen.storyboard */,
 				7E601C492018C464001FD6BA /* FindHome.xcdatamodeld */,
 				7E394D912062212B0038A330 /* Info.plist */,
+				7E21060820787FF50095F8E7 /* MyApi.swift */,
 				7E9A347A206A2B1800E9D829 /* DetailView */,
 				7E46E99C205FF1F100441BC7 /* ListView */,
 				7E46E99D205FF20100441BC7 /* HIstoryView */,
@@ -592,6 +595,7 @@
 				7E394D7620621FA80038A330 /* PostView.swift in Sources */,
 				7E5D6ECB2062B4B9001737B6 /* LoginView.swift in Sources */,
 				7E394D88206220FD0038A330 /* HistoryViewController.swift in Sources */,
+				7E21060920787FF50095F8E7 /* MyApi.swift in Sources */,
 				7EC320A1206E8FAC0074F9D6 /* RegisterTableView.swift in Sources */,
 				7EC320A3206E965C0074F9D6 /* LoginCell.swift in Sources */,
 				7EC3209F206E8F510074F9D6 /* RegisterCell.swift in Sources */,

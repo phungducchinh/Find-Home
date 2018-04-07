@@ -39,6 +39,7 @@ class LoginCell: UITableViewCell{
         }
     }
     
+    
     public var txfuser : String?{
         didSet{
             txfuser = txf.text!

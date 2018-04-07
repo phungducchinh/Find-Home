@@ -10,13 +10,18 @@ import UIKit
 
 class TabBarViewController: UITabBarController {
 
-    
+    var apitokenTab = ""
     var viewController1: PostViewController?
     var viewController2: ListViewController?
     var viewController3: HistoryViewController?
     
     var subviewController:[UIViewController] = []
 
+    public var getApi : String?{
+        didSet{
+            apitokenTab = getApi!
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +47,7 @@ class TabBarViewController: UITabBarController {
         viewController3?.tabBarItem = UITabBarItem(title: "Cá nhân", image: UIImage(named: "user-icon")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal), selectedImage: UIImage(named: "user_icon new")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal))
         viewController3?.tabBarItem.tag = 2
         
+        self.apitokenTab = (viewController2?.apitoken)!
         self.setViewControllers(subviewController, animated: true)
         self.tabBar.backgroundColor = .white
         
@@ -86,16 +92,23 @@ extension TabBarViewController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if (self.selectedViewController == viewController1)
         {
+            viewController1?.self.apitoken = self.apitokenTab
+            print(viewController1?.self.apitoken)
             self.navigationItem.title = "Đăng tin"
             self.navigationItem.hidesBackButton = true
         }
         else if (self.selectedViewController == viewController2)
         {
+            viewController2?.self.apitoken = self.apitokenTab
+             print(viewController1?.self.apitoken)
             self.navigationItem.title = "Tìm trọ"
             self.navigationItem.hidesBackButton = true
             //self.navigationItem.setHidesBackButton(true, animated: true)
         }
-        else {
+        else
+        {
+            viewController3?.self.apitoken = self.apitokenTab
+             print(viewController3?.self.apitoken)
             self.navigationItem.title = "Các tin đã đăng"
             self.navigationController?.navigationBar.backItem?.title = "Đăng xuất"
             //self.navigationItem.setHidesBackButton(true, animated: true)

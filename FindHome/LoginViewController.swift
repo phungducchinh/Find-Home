@@ -12,7 +12,7 @@ import Alamofire
 
 class LoginViewController: UIViewController{
     let login = LoginView()
-    
+    var apiLogin = ""
     var username = ""
     var password = ""
     
@@ -37,7 +37,7 @@ class LoginViewController: UIViewController{
         btnLogin.titleLabel?.font = btnLogin.titleLabel?.font.withSize(17)
         btnLogin.layer.cornerRadius = 7
         btnLogin.backgroundColor = UIColor(red: 0/255, green: 143/255, blue: 255/255, alpha: 1)
-        btnLogin.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
+        
         return btnLogin
     }()
     
@@ -55,7 +55,7 @@ class LoginViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        btnLogin.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
 
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -100,18 +100,36 @@ class LoginViewController: UIViewController{
     }
     
     func signInButtonTapped() {
-        
         tbvLogin.reloadData()
-       // let destination = TabBarViewController() // Your destination
-        //navigationController?.pushViewController(destination, animated: true)
-
+        
+        let index1 = IndexPath(row: 0, section: 0)
+        if let cell = tbvLogin.cellForRow(at: index1) as? LoginCell {
+            tbvLogin.reloadData()
+            print(cell.txf.text!)
+            username = cell.txf.text!
+            print("username: " + username)
+        }
+        
+        let index2 = IndexPath(row: 1, section: 0)
+        if let cell = tbvLogin.cellForRow(at: index2) as? LoginCell {
+            tbvLogin.reloadData()
+            print(cell.txf.text!)
+            password = cell.txf.text!
+            print("username: " + username)
+        }
+        
         let email = username.lowercased()
         let pass = password.lowercased()
         
+        
+        
         if(email == "" || pass == ""){
-            print("error")
-            var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            tbvLogin.reloadData()
+            if(email == "" || pass == ""){
+                print("error")
+                var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
+                alert.show()
+            }
         }else{
             print(email)
             print(pass)
@@ -121,9 +139,9 @@ class LoginViewController: UIViewController{
                 if let json = response.result.value as? [String: Any]
                 {
                     let dicJson = json as NSDictionary
-                    print(dicJson)
+                    //print(dicJson)
                     let stt =  (dicJson["status"] as? Bool)! //dicJson["message"] as? String
-                    print(stt)
+                    //print(stt)
                     
                     if (stt == false ) {
                         print("sai thong tin")
@@ -135,12 +153,17 @@ class LoginViewController: UIViewController{
                         print(name?["api_token"])
                         let alert = UIAlertView(title: "Chúc mừng", message: "Login thành công", delegate: nil, cancelButtonTitle: "OK")
                         alert.show()
+                        self.apiLogin = name?["api_token"] as! String
+                        let abc = ListViewController()
+                        abc.apitoken = self.apiLogin
+                        print("chinh bi dien " + abc.apitoken)
+                        MyApi.appApi = self.apiLogin
+                        self.navigationController?.pushViewController(TabBarViewController(), animated: true)
                     }
-                    
                 }
             }
         }
-    }
+    } 
     func RegisterButtonTapped() {
         print("next to view dang ky")
         let destination = RegisterViewController() // Your destination
@@ -173,7 +196,7 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            let cell = tbvLogin.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
             
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
@@ -183,7 +206,7 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
             return cell
             
         }else {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
+            let cell = tbvLogin.dequeueReusableCell(withIdentifier: "Cell") as! LoginCell
             
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]

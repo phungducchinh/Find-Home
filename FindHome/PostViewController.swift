@@ -9,8 +9,13 @@
 import UIKit
 
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    var imageList = [UIImage]()
     
+    var apitoken = ""
+    
+    let td = ["Tiêu đề:","Giá phòng:","Diện tích:","Điện thoại:","Địa chỉ:"]
+    let placehoder = ["Cho thuê nhà nguyên căn", "1.500.000 đ", "12 mét vuông", "01234567899", "Lã Xuân Oai, Quận 9"]
+    
+    var imageList = [UIImage]()
     var data = PostData(imageList: [UIImage(named: "1")!], info: PostInfo(title: "abc", price: "avc", area: "acc", address: "aa", phone: "sfe"), more: "asda")
     var info = PostInfo(title: "sasdas", price: "asdad", area: "asda", address: "asda", phone: "asdd")
     
@@ -158,19 +163,23 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         btnADd.setTitleColor(.white , for: .normal)
         btnADd.translatesAutoresizingMaskIntoConstraints = false
         btnADd.layer.cornerRadius = 7
-        btnADd.addTarget(self , action: #selector(actionPost), for: .touchUpInside)
         return btnADd
     }()
     
     func actionPost()
     {
+        tbvPost.reloadData()
         //let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
         let destination = DetailViewController() // Your destination
         data.imageList = imageList
-        data.info = tbvPost.infotbv
+        data.info = info
         data.more = txfMore.text!
         destination.dataD = data
-        navigationController?.pushViewController(destination, animated: true)
+        self.navigationController?.pushViewController(destination, animated: true)
+        print(info.price)
+    }
+    
+    func loadInfo(){
         
     }
     
@@ -206,7 +215,15 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(image2)
         view.addSubview(image3)
         
+        print(apitoken)
+        
+        tbvPost.delegate = self
+        tbvPost.dataSource = self
+        tbvPost.reloadData()
         tbvPost.register(PostCell.self, forCellReuseIdentifier: "Cell")
+        
+        btnADd.addTarget(self , action: #selector(actionPost), for: .touchUpInside)
+
 
         let View = ["lblinfo" : self.lblInfo, "lblAdd" : self.lblAddImg, "imgADd" : self.imgADd, "tbv" : self.tbvPost, "lblMore" : self.lblMore, "txfMore": self.txfMore, "btnAdd" : self.btnADd, "img1" : self.image1, "img2" : self.image2, "img3" : self.image3] as [String : Any]
         
@@ -236,3 +253,65 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     }
 
 }
+
+extension PostViewController : UITableViewDelegate, UITableViewDataSource{
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 25
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return td.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if (indexPath.row == 0) {
+            let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+            
+            cell.name = td[indexPath.row]
+            cell.hiden = placehoder[indexPath.row]
+            
+            info.title = cell.txfInfo.text!
+            return cell
+            
+        }else if (indexPath.row == 1){
+            let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+            
+            cell.name = td[indexPath.row]
+            cell.hiden = placehoder[indexPath.row]
+            
+            info.price = cell.txfInfo.text!
+            return cell
+        }else if (indexPath.row == 2){
+            let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+            
+            cell.name = td[indexPath.row]
+            cell.hiden = placehoder[indexPath.row]
+            
+            info.area = cell.txfInfo.text!
+            return cell
+        }else if (indexPath.row == 3){
+            let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+            
+            cell.name = td[indexPath.row]
+            cell.hiden = placehoder[indexPath.row]
+            
+            info.phone = cell.txfInfo.text!
+            return cell
+        }else {
+            let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+            
+            cell.name = td[indexPath.row]
+            cell.hiden = placehoder[indexPath.row]
+            
+            info.address = cell.txfInfo.text!
+            return cell
+        }
+    }
+    
+}
+

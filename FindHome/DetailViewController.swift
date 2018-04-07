@@ -11,11 +11,13 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var dataD = PostData(imageList: [UIImage(named: "imageListDt")!], info: PostInfo(title: "sdfs", price: "sdfsdf", area: "sdfsf", address: "sdfsdf", phone: "sdfsdf"), more: "sdfsdf")
+    var dataD = PostData(imageList: [UIImage(named: "placeholderimg")!], info: PostInfo(title: "sdfs", price: "sdfsdf", area: "sdfsf", address: "sdfsdf", phone: "sdfsdf"), more: "sdfsdf")
     //    let detail = DetailView()
 //    let imageList : [UIImage]  = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!]
     
     var imageListDt : [UIImage] = []
+    
+    var infoDetail = NSDictionary()
     
     fileprivate let imageView : UIImageView = {
         let imageView = UIImageView()
@@ -229,6 +231,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.navigationItem.title = "Chi tiết"
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.lblName)
         self.view.addSubview(self.imgPrice)

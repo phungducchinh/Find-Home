@@ -19,8 +19,8 @@ class ListTableView: UITableView {
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         
-        self.dataSource = self
-        self.delegate = self
+        //self.dataSource = self
+        //self.delegate = self
         self.register(ListCell.self, forCellReuseIdentifier: "Cell")
         
     }
@@ -32,36 +32,36 @@ class ListTableView: UITableView {
 
 }
 
-extension ListTableView : UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ListCell
-        
-        cell.img = img[indexPath.row]
-        cell.address = address[indexPath.row]
-        cell.money = money[indexPath.row]
-        cell.acreage = acreage[indexPath.row]
-        cell.title = titleN[indexPath.row]
-        cell.backgroundColor = .white
-        return cell
-    }
-    
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
-    }
-    
-    //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return CGFloat(UITableViewAutomaticDimension)
-    //    }
-    
-    override func numberOfRows(inSection section: Int) -> Int {
-        return 1    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return img.count
-    }
-    
-    
-    
-}
+//extension ListTableView : UITableViewDelegate, UITableViewDataSource {
+//    
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ListCell
+//        
+//        cell.img = img[indexPath.row]
+//        cell.address = address[indexPath.row]
+//        cell.money = money[indexPath.row]
+//        cell.acreage = acreage[indexPath.row]
+//        cell.title = titleN[indexPath.row]
+//        cell.backgroundColor = .white
+//        return cell
+//    }
+//    
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 90
+//    }
+//    
+//    //    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//    //        return CGFloat(UITableViewAutomaticDimension)
+//    //    }
+//    
+//    override func numberOfRows(inSection section: Int) -> Int {
+//        return 1    }
+//    
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return img.count
+//    }
+//    
+//    
+//    
+//}

@@ -10,7 +10,7 @@ import UIKit
 
 class HistoryViewController: UIViewController {
 
-    
+    var apitoken = ""
     let history : HistoryView = {
         let history = HistoryView()
         history.translatesAutoresizingMaskIntoConstraints = false
