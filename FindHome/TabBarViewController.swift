@@ -110,7 +110,7 @@ extension TabBarViewController: UITabBarControllerDelegate{
             viewController3?.self.apitoken = self.apitokenTab
              print(viewController3?.self.apitoken)
             self.navigationItem.title = "Các tin đã đăng"
-            self.navigationController?.navigationBar.backItem?.title = "Đăng xuất"
+            //self.navigationController?.navigationBar.backItem?.title = "Đăng xuất"
             //self.navigationItem.setHidesBackButton(true, animated: true)
         }
 

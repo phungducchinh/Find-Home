@@ -11,13 +11,14 @@ import UIKit
 class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var apitoken = ""
+    var infoPost = NSDictionary()
     
     let td = ["Tiêu đề:","Giá phòng:","Diện tích:","Điện thoại:","Địa chỉ:"]
     let placehoder = ["Cho thuê nhà nguyên căn", "1.500.000 đ", "12 mét vuông", "01234567899", "Lã Xuân Oai, Quận 9"]
     
     var imageList = [UIImage]()
-    var data = PostData(imageList: [UIImage(named: "1")!], info: PostInfo(title: "abc", price: "avc", area: "acc", address: "aa", phone: "sfe"), more: "asda")
-    var info = PostInfo(title: "sasdas", price: "asdad", area: "asda", address: "asda", phone: "asdd")
+   // var data = PostData(imageList: [UIImage(named: "1")!], info: PostInfo(title: "abc", price: 23456 as CFNumber, area: "acc", address: "aa", phone: "sfe"), more: "asda")
+    //var info = PostInfo(title: "sasdas", price: 23456 as CFNumber, area: "asda", address: "asda", phone: "asdd")
     
     //let postView = PostView()
     fileprivate let lblAddImg : UILabel = {
@@ -169,14 +170,54 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     func actionPost()
     {
         tbvPost.reloadData()
-        //let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
+        let index1 = IndexPath(row: 0, section: 0)
+        if let cell = tbvPost.cellForRow(at: index1) as? LoginCell {
+            tbvPost.reloadData()
+            print(cell.txf.text!)
+            PostInfo.title = cell.txf.text!
+            print("username: " +  PostInfo.title)
+        }
+        let index2 = IndexPath(row: 1, section: 0)
+        if let cell = tbvPost.cellForRow(at: index2) as? LoginCell {
+            tbvPost.reloadData()
+            print(cell.txf.text!)
+            PostInfo.price = cell.txf.text!
+            print("price: " +  PostInfo.price )
+        }
+        let index3 = IndexPath(row: 2, section: 0)
+        if let cell = tbvPost.cellForRow(at: index3) as? LoginCell {
+            tbvPost.reloadData()
+            print(cell.txf.text!)
+            PostInfo.area = cell.txf.text! as! CFNumber
+            print("acreage: " + (PostInfo.area as! String))
+        }
+        let index4 = IndexPath(row: 3, section: 0)
+        if let cell = tbvPost.cellForRow(at: index4) as? LoginCell {
+            tbvPost.reloadData()
+            print(cell.txf.text!)
+            PostInfo.phone = cell.txf.text!
+            print("phone: " + PostInfo.phone)
+        }
+        let index5 = IndexPath(row: 4, section: 0)
+        if let cell = tbvPost.cellForRow(at: index5) as? LoginCell {
+            tbvPost.reloadData()
+            print(cell.txf.text!)
+            PostInfo.address = cell.txf.text!
+            print("address: " + PostInfo.address)
+        }
+        
+        
         let destination = DetailViewController() // Your destination
-        data.imageList = imageList
-        data.info = info
-        data.more = txfMore.text!
-        destination.dataD = data
+        PostData.imageList = imageList
+        PostData.title = PostInfo.title
+        PostData.price = PostInfo.price
+        PostData.area = PostInfo.area
+        PostData.address = PostInfo.address
+        PostData.phone = PostInfo.phone
+        PostData.more = txfMore.text!
+        destination.co = "0"
         self.navigationController?.pushViewController(destination, animated: true)
-        print(info.price)
+        print("")
     }
     
     func loadInfo(){
@@ -275,7 +316,7 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             cell.name = td[indexPath.row]
             cell.hiden = placehoder[indexPath.row]
             
-            info.title = cell.txfInfo.text!
+           // info.title = cell.txfInfo.text!
             return cell
             
         }else if (indexPath.row == 1){
@@ -284,7 +325,7 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             cell.name = td[indexPath.row]
             cell.hiden = placehoder[indexPath.row]
             
-            info.price = cell.txfInfo.text!
+            //info.price = cell.txfInfo.text! as! CFNumber
             return cell
         }else if (indexPath.row == 2){
             let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
@@ -292,7 +333,7 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             cell.name = td[indexPath.row]
             cell.hiden = placehoder[indexPath.row]
             
-            info.area = cell.txfInfo.text!
+        //    info.area = cell.txfInfo.text!
             return cell
         }else if (indexPath.row == 3){
             let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
@@ -300,7 +341,7 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             cell.name = td[indexPath.row]
             cell.hiden = placehoder[indexPath.row]
             
-            info.phone = cell.txfInfo.text!
+         //   info.phone = cell.txfInfo.text!
             return cell
         }else {
             let cell = tbvPost.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
@@ -308,7 +349,7 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             cell.name = td[indexPath.row]
             cell.hiden = placehoder[indexPath.row]
             
-            info.address = cell.txfInfo.text!
+         //   info.address = cell.txfInfo.text!
             return cell
         }
     }

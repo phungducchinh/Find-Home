@@ -11,8 +11,9 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var dataD = PostData(imageList: [UIImage(named: "placeholderimg")!], info: PostInfo(title: "sdfs", price: "sdfsdf", area: "sdfsf", address: "sdfsdf", phone: "sdfsdf"), more: "sdfsdf")
-    //    let detail = DetailView()
+    var co = "" // nhan gia tri co tu bien Post (0 )hoac List(1) hoac History(2)
+    
+        //    let detail = DetailView()
 //    let imageList : [UIImage]  = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!]
     
     var imageListDt : [UIImage] = []
@@ -182,16 +183,26 @@ class DetailViewController: UIViewController {
     }()
     
     func loadImage(){
-        for var i in (0..<dataD.imageList.count) {
-            imageListDt.append(dataD.imageList[i])
+        if co == "0"
+        {
+            imageListDt = PostData.imageList
         }
+        else if co == "1"
+        {
+            let img = infoDetail["image"] as! [UIImage]
+            imageListDt = img
+        }
+        else {
+            let img = infoDetail["image"] as! [UIImage]
+            imageListDt = img
+       }
     }
     
     
     func backImage()
     {
         loadImage()
-        imageListDt = dataD.imageList
+        //imageListDt = dataD.imageList
         print("back")
         if (self.dem == 0) {
             dem = imageListDt.count-1
@@ -206,7 +217,7 @@ class DetailViewController: UIViewController {
     func nextImage()
     {
         loadImage()
-        imageListDt = dataD.imageList
+       // imageListDt = dataD.imageList
         print("next")
         if (dem == self.imageListDt.count-1) {
             dem = 0
@@ -220,18 +231,48 @@ class DetailViewController: UIViewController {
     }
     
     func loadInfo(){
-        lblName.text = dataD.info.title
-        lblArea.text = dataD.info.area
-        lblPrice.text = dataD.info.price
-        lblPhone.text = dataD.info.phone
-        txtAdd.text = dataD.info.address
-        txtDetail.text = dataD.more
+        if (co == "0"){
+            lblName.text = PostData.title
+            let number = PostData.area
+            lblArea.text = String(describing: number)
+            lblPrice.text = PostData.price
+            lblPhone.text = PostData.phone
+            txtAdd.text = PostData.address
+            txtDetail.text = PostData.more
+            imageListDt = PostData.imageList
+            print("Chuyen tu view Post sang view Detail")
+        }
+        else if co == "1"
+        {
+            lblName.text = self.infoDetail["title"] as? String
+            let number = self.infoDetail["acreage"] as! CFNumber
+            print(number)
+            lblArea.text = String(describing: number)
+            lblPrice.text = self.infoDetail["price"] as? String
+            lblPhone.text = self.infoDetail["phone"] as? String
+            txtAdd.text = self.infoDetail["address"] as! String
+            txtDetail.text = self.infoDetail["description"] as! String
+             print("Chuyen tu view List sang view Detail")
+        }
+        else if co == "2"
+        {
+            lblName.text = self.infoDetail["title"] as? String
+            let number = self.infoDetail["acreage"] as! CFNumber
+            print(number)
+            lblArea.text = String(describing: number)
+            lblPrice.text = self.infoDetail["price"] as? String
+            lblPhone.text = self.infoDetail["phone"] as? String
+            txtAdd.text = self.infoDetail["address"] as! String
+            txtDetail.text = self.infoDetail["description"] as! String
+            print("Chuyen tu view List sang view Detail")
+        }
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.navigationItem.title = "Chi tiết"
+      
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.lblName)
         self.view.addSubview(self.imgPrice)
@@ -274,7 +315,12 @@ class DetailViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-145-[back(70)]", options: [], metrics: nil, views: View))
         
         //        self.view = self.detail
-        //        navigationItem.title = "Thông tin chi tiết"
+        self.navigationItem.title = "Thông tin chi tiết"
+        //self.navigationItem.backBarButtonItem?.title = "Back"
+       // self.navigationItem.hidesBackButton = false
+        let backItem = UIBarButtonItem()
+        backItem.title = "Back"
+        self.navigationItem.backBarButtonItem = backItem
     }
     //}
     

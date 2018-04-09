@@ -9,7 +9,11 @@
 import Foundation
 import UIKit
 struct PostData {
-    var imageList : [UIImage]
-    var info : PostInfo
-    var more :  String
+    static var imageList = [UIImage]()
+    static  var title = ""
+    static var price = "" 
+    static var area = "" as!  CFNumber
+    static var address = ""
+    static var phone = ""
+    static var more =   ""
 }

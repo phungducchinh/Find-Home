@@ -140,6 +140,9 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("tab tab tab")
         let vc = DetailViewController() // Your destination
+        self.info = self.dataShow[indexPath.row] as! NSDictionary
+        vc.infoDetail = self.info
+        vc.co = "1"
         navigationController?.pushViewController(vc, animated: true)
     }
     

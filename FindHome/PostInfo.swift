@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 struct PostInfo {
-    var title : String
-    var price : String
-    var area : String
-    var address : String
-    var phone : String
+    static  var title = ""
+    static var price = ""
+    static var area = "" as!  CFNumber
+    static var address = ""
+    static var phone = ""
 }

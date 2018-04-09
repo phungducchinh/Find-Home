@@ -14,7 +14,7 @@ class PostTableView: UITableView {
     let td = ["Tiêu đề:","Giá phòng:","Diện tích:","Điện thoại:","Địa chỉ:"]
     let placehoder = ["Cho thuê nhà nguyên căn", "1.500.000 đ", "12 mét vuông", "01234567899", "Lã Xuân Oai, Quận 9"]
     
-    var infotbv = PostInfo(title: "dssdf", price: "sdfsdf", area: "sdfsdf", address: "sdfsdf", phone: "sdfsdf")
+    //var infotbv = PostInfo(title: "dssdf", price: "sdfsdf" as! CFNumber, area: "sdfsdf", address: "sdfsdf", phone: "sdfsdf")
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         //self.delegate = self
