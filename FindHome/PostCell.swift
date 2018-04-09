@@ -11,7 +11,7 @@ import UIKit
 
 class PostCell: UITableViewCell {
     
-    fileprivate let lblInfo : UILabel = {
+       fileprivate let lblInfo : UILabel = {
         let lblInfo = UILabel()
         lblInfo.textColor = .black
         //lblInfo.text = "abc"
@@ -26,7 +26,7 @@ class PostCell: UITableViewCell {
         }
     }
     
-    fileprivate let txfInfo : UITextField = {
+    public let txfInfo : UITextField = {
         let txfInfo = UITextField()
         txfInfo.translatesAutoresizingMaskIntoConstraints = false
         txfInfo.font = txfInfo.font?.withSize(15)
@@ -36,6 +36,11 @@ class PostCell: UITableViewCell {
     public var hiden : String?{
         didSet{
             txfInfo.placeholder = hiden
+        }
+    }
+    public var moreinfo : String?{
+        didSet{
+             moreinfo = txfInfo.text
         }
     }
     

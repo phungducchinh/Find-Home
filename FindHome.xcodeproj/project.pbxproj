@@ -11,6 +11,7 @@
 		7E03B7DE207274D800F44CD1 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DD207274D800F44CD1 /* PostData.swift */; };
 		7E03B7E020727A6A00F44CD1 /* PostInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */; };
 		7E21060920787FF50095F8E7 /* MyApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E21060820787FF50095F8E7 /* MyApi.swift */; };
+		7E2392DE207B9FD700935C24 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E2392DD207B9FD700935C24 /* PostCell.swift */; };
 		7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7320621F9C0038A330 /* PostTableView.swift */; };
 		7E394D7620621FA80038A330 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7520621FA80038A330 /* PostView.swift */; };
 		7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E394D7C206220BC0038A330 /* LoginViewController.swift */; };
@@ -36,7 +37,6 @@
 		7E601C5B2018C464001FD6BA /* FindHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C5A2018C464001FD6BA /* FindHomeTests.swift */; };
 		7E601C662018C464001FD6BA /* FindHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C652018C464001FD6BA /* FindHomeUITests.swift */; };
 		7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B329A206FDF04003D5D84 /* DetailViewController.swift */; };
-		7E97CD7B205AA16100C92ABB /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E97CD7A205AA16100C92ABB /* PostCell.swift */; };
 		7EC3209C206E8B340074F9D6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32098206E8B340074F9D6 /* RegisterView.swift */; };
 		7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32099206E8B340074F9D6 /* RegisterViewController.swift */; };
 		7EC3209F206E8F510074F9D6 /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3209E206E8F510074F9D6 /* RegisterCell.swift */; };
@@ -73,6 +73,7 @@
 		7E03B7DD207274D800F44CD1 /* PostData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		7E03B7DF20727A6A00F44CD1 /* PostInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostInfo.swift; sourceTree = "<group>"; };
 		7E21060820787FF50095F8E7 /* MyApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyApi.swift; sourceTree = "<group>"; };
+		7E2392DD207B9FD700935C24 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		7E394D7320621F9C0038A330 /* PostTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableView.swift; sourceTree = "<group>"; };
 		7E394D7520621FA80038A330 /* PostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		7E394D7C206220BC0038A330 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -103,7 +104,6 @@
 		7E601C652018C464001FD6BA /* FindHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindHomeUITests.swift; sourceTree = "<group>"; };
 		7E601C672018C464001FD6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E8B329A206FDF04003D5D84 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		7E97CD7A205AA16100C92ABB /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PostCell.swift; path = ../../../Download/PostCell.swift; sourceTree = "<group>"; };
 		7EC32098206E8B340074F9D6 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7EC32099206E8B340074F9D6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7EC3209E206E8F510074F9D6 /* RegisterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
@@ -191,7 +191,7 @@
 				7E3B1003206FE97B007E002C /* PostViewController.swift */,
 				7E394D7320621F9C0038A330 /* PostTableView.swift */,
 				7E394D7520621FA80038A330 /* PostView.swift */,
-				7E97CD7A205AA16100C92ABB /* PostCell.swift */,
+				7E2392DD207B9FD700935C24 /* PostCell.swift */,
 			);
 			name = PostView;
 			sourceTree = "<group>";
@@ -612,11 +612,11 @@
 				7E03B7DE207274D800F44CD1 /* PostData.swift in Sources */,
 				7E394D8D206221100038A330 /* ListCell.swift in Sources */,
 				7E601C4B2018C464001FD6BA /* FindHome.xcdatamodeld in Sources */,
-				7E97CD7B205AA16100C92ABB /* PostCell.swift in Sources */,
 				7E394D8E206221100038A330 /* ListTableView.swift in Sources */,
 				7E5D6ECF2062B5C0001737B6 /* LoginTableView.swift in Sources */,
 				7E394D90206221100038A330 /* ListViewController.swift in Sources */,
 				7E5D6EBA20629AC5001737B6 /* Connectivity.swift in Sources */,
+				7E2392DE207B9FD700935C24 /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
