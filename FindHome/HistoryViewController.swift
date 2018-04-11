@@ -33,6 +33,7 @@ class HistoryViewController: UIViewController {
         tbv.dataSource = self
         tbv.delegate = self
         tbv.register(HistoryCell.self, forCellReuseIdentifier: "Cell")
+        tbv.register(NulCellTableViewCell.self, forCellReuseIdentifier: "Cellnul")
         if apitoken == "" {
             print("Chua load duoc api")
             var alert = UIAlertView(title: "Không lấy được thông tin user", message: "Vui lòng thử lại", delegate: nil, cancelButtonTitle: "OK")
@@ -41,6 +42,7 @@ class HistoryViewController: UIViewController {
         else
         {
             loadApi()
+            print("day la api :" + apitoken)
         }
         
         view.addSubview(tbv)
@@ -74,12 +76,12 @@ class HistoryViewController: UIViewController {
                     
                     let data = dict["data"] as! NSArray
                     self.dataShow = (dict["data"] as! NSArray) as! [NSDictionary]
-                    print(self.dataShow[0])
-                    self.info = self.dataShow[0] as! NSDictionary
-                    print(self.info["title"])
-                    if (self.dataShow.count > 0 ){
+                   // print(self.dataShow[0])
+                  //  self.info = self.dataShow[0] as! NSDictionary
+                   // print(self.info["title"])
+                  //  if (self.dataShow.count > 0 ){
                         self.tbv.reloadData()
-                    }
+                   // }
                     //print(data[1])
                     //print(name)
                 }
@@ -95,19 +97,29 @@ class HistoryViewController: UIViewController {
 extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
-        self.info = self.dataShow[indexPath.row] as! NSDictionary
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "Cellnul") as! NulCellTableViewCell
         
-        cell.img = img[indexPath.row]
-        cell.address = self.info["address"] as! String
-        cell.money = self.info["price"] as! String
-        let number = self.info["acreage"] as! CFNumber
-        print(number)
-        cell.acreage = String(describing: number)
-        cell.title = self.info["title"] as! String
-        cell.backgroundColor = .white
+        if self.dataShow.count > 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
+            self.info = self.dataShow[indexPath.row] as! NSDictionary
+            cell.img = img[indexPath.row]
+            cell.address = self.info["address"] as! String
+            cell.money = self.info["price"] as! String
+            let number = self.info["acreage"] as! CFNumber
+            print(number)
+            cell.acreage = String(describing: number)
+            cell.title = self.info["title"] as! String
+            cell.backgroundColor = .white
+            
+            return cell
 
-        return cell
+        }else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cellnul") as! NulCellTableViewCell
+            return cell
+        }
+     //   return cell
+
     }
     
     
@@ -121,36 +133,53 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
     //    }
     
     func numberOfRows(inSection section: Int) -> Int {
-        return 1    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataShow.count
+        return 1
     }
     
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.dataShow.count > 0 {
+            return self.dataShow.count
+        }
+        else{
+            return 1
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if self.dataShow.count > 0 {
+            return true
+        }else{
+            return false
+        }
+    }
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        
-        let edit = UITableViewRowAction(style: .normal, title: "Sửa") { action, index in
-            //self.isEditing = false
-            print("edit button tapped")
-        }
-        edit.backgroundColor = .red
-        let delete = UITableViewRowAction(style: .normal, title: "Xoá") { action, index in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
-            self.info = self.dataShow[indexPath.row] as! NSDictionary
-            let idnumber = self.info["id"] as! CFNumber
-            print(idnumber)
-            let defaultUrl = "https://matas-app.herokuapp.com/api/v1/purchase/"
-            let id = String(describing: idnumber)
-            print(id)
-            let url = URL(string: defaultUrl + String(describing: idnumber))
-                //(defaultUrl + String(describing: idnumber)) as! URL
-            print("the url = \(url!)")
+        //if self.dataShow.count > 0 {
+            let edit = UITableViewRowAction(style: .normal, title: "Sửa") { action, index in
+                //self.isEditing = false
+                print("edit button tapped")
+                let sua = PostViewController()
+                sua.coP = "1"
+                self.navigationController?.pushViewController(sua, animated: true)
+            }
+            edit.backgroundColor = .red
+            let delete = UITableViewRowAction(style: .normal, title: "Xoá") { action, index in
+                let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
+                self.info = self.dataShow[indexPath.row] as! NSDictionary
+                let idnumber = self.info["id"] as! CFNumber
+                print(idnumber)
+                let abc = "https://matas-app.herokuapp.com/api/v1/purchase/"
+                let defaultUrl = URL(string: abc)
+                let id = String(describing: idnumber)
+                print(id)
+                let url = URL(string: abc + String(describing: idnumber))
+                    //(defaultUrl + String(describing: idnumber)) as! URL
+                print("the url = \(url!)")
             
-            let headers: HTTPHeaders = [
-                "Http-Auth-Token": self.apitoken,
-                "Accept": "application/json"
-            ]
+                let headers: HTTPHeaders = [
+                    "Http-Auth-Token": self.apitoken,
+                    "Accept": "application/json"
+                ]
 //            Alamofire.request(url!, headers: headers)
 //                .responseJSON { response in
 //                    print(response)
@@ -162,34 +191,37 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
 //                            self.tbv.reloadData()
 //                        print(name)
 //                    }
-//            }
+//            }(defaultUrl?.appendingPathComponent(id, isDirectory: true))!
             //Alamofire.request(url, method: .post, parameters: param, encoding: JSONEncoding.default, headers: [AUTH_TOKEN_KEY : AUTH_TOKEN])
-            Alamofire.request(url!, headers: headers).responseJSON { response in
-                                print(response)
-                                if let json = response.result.value as? [String: Any]
-                                {
-                                    print(json)
-                                    let dict = json as NSDictionary
-                                    let name = dict["message"] as? String //[String: Any]
+                Alamofire.request(url!, method: HTTPMethod.delete, headers: headers).responseJSON { response in
+                                    print(response)
+                                    if let json = response.result.value as? [String: Any]
+                                    {
+                                        print(json)
+                                        let dict = json as NSDictionary
+                                        let name = dict["message"] as? String //[String: Any]
                                         self.tbv.reloadData()
-                                    print(name)
-                                }
+                                        print(name)
+                                    }
+                }
+                print("delete button tapped")
             }
-            print("delete button tapped")
-        }
-        delete.backgroundColor = .red
-        
-        return [edit, delete]
+            delete.backgroundColor = .red
+            
+            return [edit, delete]
     }
-    
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("history tab")
-        let vc = DetailViewController() // Your destination
-        self.info = self.dataShow[indexPath.row] as! NSDictionary
-        vc.infoDetail = self.info
-        vc.co = "2"
-        navigationController?.pushViewController(vc, animated: true)
-
+       if self.dataShow.count > 0 {
+            print("history tab")
+            let vc = DetailViewController() // Your destination
+            self.info = self.dataShow[indexPath.row] as! NSDictionary
+            vc.infoDetail = self.info
+            vc.co = "2"
+            navigationController?.pushViewController(vc, animated: true)
+       }else {
+            print("nothing tab")
+        }
     }
 }
 

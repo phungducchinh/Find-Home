@@ -13,6 +13,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var apitoken = ""
     var infoPost = NSDictionary()
     
+    var coP = ""
+    
     let td = ["Tiêu đề:","Giá phòng:","Diện tích:","Điện thoại:","Địa chỉ:"]
     let placehoder = ["Cho thuê nhà nguyên căn", "1.500.000 đ", "12 mét vuông", "01234567899", "Lã Xuân Oai, Quận 9"]
     
@@ -158,7 +160,7 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     fileprivate let btnADd : UIButton = {
         let btnADd = UIButton()
-        btnADd.setTitle("Đăng tin", for: .normal)
+        //btnADd.setTitle("Đăng tin", for: .normal)
         btnADd.backgroundColor = UIColor(red: 1/255.0, green: 143/255.0, blue: 255/255.0, alpha: 1.0)
         //btnADd.backgroundColor = .blue
         btnADd.setTitleColor(.white , for: .normal)
@@ -169,51 +171,56 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func actionPost()
     {
+        var title = ""
+        var price = ""
+        var area : CFNumber = 0 as CFNumber
+        var address = ""
+        var phone = ""
         tbvPost.reloadData()
         let index1 = IndexPath(row: 0, section: 0)
-        if let cell = tbvPost.cellForRow(at: index1) as? LoginCell {
+        if let cell = tbvPost.cellForRow(at: index1) as? PostCell {
             tbvPost.reloadData()
-            print(cell.txf.text!)
-            PostInfo.title = cell.txf.text!
-            print("username: " +  PostInfo.title)
+            print(cell.txfInfo.text!)
+            title = cell.txfInfo.text!
+            print("username: " +  title)
         }
         let index2 = IndexPath(row: 1, section: 0)
-        if let cell = tbvPost.cellForRow(at: index2) as? LoginCell {
+        if let cell = tbvPost.cellForRow(at: index2) as? PostCell {
             tbvPost.reloadData()
-            print(cell.txf.text!)
-            PostInfo.price = cell.txf.text!
-            print("price: " +  PostInfo.price )
+            print(cell.txfInfo.text!)
+            price = cell.txfInfo.text!
+            print("price: " +  price )
         }
         let index3 = IndexPath(row: 2, section: 0)
-        if let cell = tbvPost.cellForRow(at: index3) as? LoginCell {
+        if let cell = tbvPost.cellForRow(at: index3) as? PostCell {
             tbvPost.reloadData()
-            print(cell.txf.text!)
-            PostInfo.area = cell.txf.text! as! CFNumber
-            print("acreage: " + (PostInfo.area as! String))
+            print(cell.txfInfo.text!)
+            area = cell.txfInfo.text! as! CFNumber
+            print("acreage: " + (area as! String))
         }
         let index4 = IndexPath(row: 3, section: 0)
-        if let cell = tbvPost.cellForRow(at: index4) as? LoginCell {
+        if let cell = tbvPost.cellForRow(at: index4) as? PostCell {
             tbvPost.reloadData()
-            print(cell.txf.text!)
-            PostInfo.phone = cell.txf.text!
-            print("phone: " + PostInfo.phone)
+            print(cell.txfInfo.text!)
+            phone = cell.txfInfo.text!
+            print("phone: " + phone)
         }
         let index5 = IndexPath(row: 4, section: 0)
-        if let cell = tbvPost.cellForRow(at: index5) as? LoginCell {
+        if let cell = tbvPost.cellForRow(at: index5) as? PostCell {
             tbvPost.reloadData()
-            print(cell.txf.text!)
-            PostInfo.address = cell.txf.text!
-            print("address: " + PostInfo.address)
+            print(cell.txfInfo.text!)
+            address = cell.txfInfo.text!
+            print("address: " + address)
         }
         
         
         let destination = DetailViewController() // Your destination
         PostData.imageList = imageList
-        PostData.title = PostInfo.title
-        PostData.price = PostInfo.price
-        PostData.area = PostInfo.area
-        PostData.address = PostInfo.address
-        PostData.phone = PostInfo.phone
+        PostData.title = title
+        PostData.price = price
+        PostData.area = area
+        PostData.address = address
+        PostData.phone = phone
         PostData.more = txfMore.text!
         destination.co = "0"
         self.navigationController?.pushViewController(destination, animated: true)
@@ -257,6 +264,14 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addSubview(image3)
         
         print(apitoken)
+        
+        if coP == "0"{
+            btnADd.setTitle("Đăng tin", for: .normal)
+        }else{
+            btnADd.setTitle("Cập nhật", for: .normal)
+            self.navigationItem.title = "Chỉnh sửa thông tin"
+            imgADd.isEnabled = false
+        }
         
         tbvPost.delegate = self
         tbvPost.dataSource = self

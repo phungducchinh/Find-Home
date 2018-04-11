@@ -11,7 +11,7 @@ import UIKit
 struct PostInfo {
     static  var title = ""
     static var price = ""
-    static var area = "" as!  CFNumber
+    static var area : CFNumber = 0 as CFNumber
     static var address = ""
     static var phone = ""
 }

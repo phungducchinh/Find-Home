@@ -21,6 +21,7 @@ class RegisterCell: UITableViewCell{
         let txf = UITextField()
         txf.translatesAutoresizingMaskIntoConstraints = false
         txf.font = txf.font?.withSize(15)
+        txf.isSecureTextEntry = true
         return txf
     }()
     

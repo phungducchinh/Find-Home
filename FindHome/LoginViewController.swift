@@ -11,6 +11,7 @@ import Alamofire
 //import swi
 
 class LoginViewController: UIViewController{
+    
     let login = LoginView()
     var apiLogin = ""
     var username = ""
@@ -211,7 +212,7 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-            
+            cell.txf.isSecureTextEntry = true
             password = cell.txf.text!
             return cell
         }

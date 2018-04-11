@@ -11,10 +11,6 @@ import UIKit
 
 class RegisterTableView: UITableView {
     
-    var username = ""
-    var password = ""
-    var passwordagain = ""
-    
     var imgname = [UIImage(named: "user")!,UIImage(named: "pass")!, UIImage(named: "pass")! ]
     var holder = ["Email/Số điện thoại", "Mật khẩu", "Nhập lại mật khẩu" ]
     
@@ -46,7 +42,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
             
-            username = cell.txf.text!
+           // username = cell.txf.text!
             return cell
             
         }else if (indexPath.row == 1){
@@ -55,8 +51,9 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-            
-            password = cell.txf.text!
+           //
+            //password = cell.txf.text!
+            cell.txf.isSecureTextEntry = true
             return cell
         }else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
@@ -64,8 +61,8 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-            
-            passwordagain = cell.txf.text!
+            cell.txf.isSecureTextEntry = true
+           // passwordagain = cell.txf.text!
             return cell
         }
         

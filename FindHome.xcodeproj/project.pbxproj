@@ -36,6 +36,7 @@
 		7E601C502018C464001FD6BA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E601C4E2018C464001FD6BA /* LaunchScreen.storyboard */; };
 		7E601C5B2018C464001FD6BA /* FindHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C5A2018C464001FD6BA /* FindHomeTests.swift */; };
 		7E601C662018C464001FD6BA /* FindHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C652018C464001FD6BA /* FindHomeUITests.swift */; };
+		7E8A35AC207CFD2700F35BF4 /* NulCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A35AB207CFD2700F35BF4 /* NulCellTableViewCell.swift */; };
 		7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B329A206FDF04003D5D84 /* DetailViewController.swift */; };
 		7EC3209C206E8B340074F9D6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32098206E8B340074F9D6 /* RegisterView.swift */; };
 		7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32099206E8B340074F9D6 /* RegisterViewController.swift */; };
@@ -103,6 +104,7 @@
 		7E601C612018C464001FD6BA /* FindHomeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FindHomeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E601C652018C464001FD6BA /* FindHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindHomeUITests.swift; sourceTree = "<group>"; };
 		7E601C672018C464001FD6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E8A35AB207CFD2700F35BF4 /* NulCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NulCellTableViewCell.swift; sourceTree = "<group>"; };
 		7E8B329A206FDF04003D5D84 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7EC32098206E8B340074F9D6 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7EC32099206E8B340074F9D6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				7E601C492018C464001FD6BA /* FindHome.xcdatamodeld */,
 				7E394D912062212B0038A330 /* Info.plist */,
 				7E21060820787FF50095F8E7 /* MyApi.swift */,
+				7E8A35AB207CFD2700F35BF4 /* NulCellTableViewCell.swift */,
 				7E9A347A206A2B1800E9D829 /* DetailView */,
 				7E46E99C205FF1F100441BC7 /* ListView */,
 				7E46E99D205FF20100441BC7 /* HIstoryView */,
@@ -589,6 +592,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */,
+				7E8A35AC207CFD2700F35BF4 /* NulCellTableViewCell.swift in Sources */,
 				7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */,
 				7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */,
 				7E394D80206220BC0038A330 /* LoginViewController.swift in Sources */,

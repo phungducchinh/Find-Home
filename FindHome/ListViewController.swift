@@ -42,6 +42,7 @@ class ListViewController: UIViewController {
         tbvListView.dataSource = self
         tbvListView.delegate = self
         tbvListView.register(ListCell.self, forCellReuseIdentifier: "Cell")
+        tbvListView.register(NulCellTableViewCell.self, forCellReuseIdentifier: "Cellnul")
         if apitoken == "" {
             print("Chua load duoc api")
             var alert = UIAlertView(title: "Không lấy được thông tin user", message: "Vui lòng thử lại", delegate: nil, cancelButtonTitle: "OK")
@@ -84,12 +85,12 @@ class ListViewController: UIViewController {
                     
                     let data = dict["data"] as! NSArray
                     self.dataShow = (dict["data"] as! NSArray) as! [NSDictionary]
-                    print(self.dataShow[0])
-                    self.info = self.dataShow[0] as! NSDictionary
-                    print(self.info["title"])
-                    if (self.dataShow.count > 0 ){
+                   // print(self.dataShow[0])
+                  //  self.info = self.dataShow[0] as! NSDictionary
+                   // print(self.info["title"])
+                   // if (self.dataShow.count > 0 ){
                         self.tbvListView.reloadData()
-                    }
+                   // }
                     //print(data[1])
                     //print(name)
                 }
@@ -107,18 +108,23 @@ class ListViewController: UIViewController {
 extension ListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ListCell
-        self.info = self.dataShow[indexPath.row] as! NSDictionary
-        
-        cell.img = img[indexPath.row]
-        cell.address = self.info["address"] as! String
-        cell.money = self.info["price"] as! String
-        let number = self.info["acreage"] as! CFNumber
-        print(number)
-        cell.acreage = String(describing: number)
-        cell.title = self.info["title"] as! String
-        cell.backgroundColor = .white
-        return cell
+        if self.dataShow.count > 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ListCell
+            self.info = self.dataShow[indexPath.row] as! NSDictionary
+            cell.img = img[indexPath.row]
+            cell.address = self.info["address"] as! String
+            cell.money = self.info["price"] as! String
+            let number = self.info["acreage"] as! CFNumber
+            print(number)
+            cell.acreage = String(describing: number)
+            cell.title = self.info["title"] as! String
+            cell.backgroundColor = .white
+            return cell
+        }else
+        {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "Cellnul") as! NulCellTableViewCell
+            return cell
+        }
     }
     
     
@@ -134,7 +140,13 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         return 1    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.dataShow.count
+        if self.dataShow.count > 0 {
+            return self.dataShow.count
+        }
+        else{
+            return 1
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
