@@ -21,7 +21,6 @@ class HistoryCell: UITableViewCell {
         let lblAddress = UILabel()
         lblAddress.translatesAutoresizingMaskIntoConstraints = false
         lblAddress.font = lblAddress.font.withSize(13)
-        //lblAddress.font = UIFont.boldSystemFont(ofSize: 15)
         lblAddress.textColor = .black
         lblAddress.sizeToFit()
         return lblAddress
@@ -40,7 +39,6 @@ class HistoryCell: UITableViewCell {
         lblMoney.translatesAutoresizingMaskIntoConstraints = false
         lblMoney.font = lblMoney.font.withSize(13)
         lblMoney.textColor = .black
-        // lblMoney.textAlignment = NSTextAlignment.center
         return lblMoney
     }()
     
@@ -56,17 +54,14 @@ class HistoryCell: UITableViewCell {
         lblAcreage.translatesAutoresizingMaskIntoConstraints = false
         lblAcreage.font = lblAcreage.font.withSize(13)
         lblAcreage.textColor = .black
-        //lblAcreage.textAlignment = NSTextAlignment.center
         return lblAcreage
     }()
     
     fileprivate let lblTitle: UILabel = {
         let lblTitle = UILabel()
         lblTitle.translatesAutoresizingMaskIntoConstraints = false
-        // lblTitle.font = lblTitle.font.withSize(13)
         lblTitle.textColor = .black
         lblTitle.font = UIFont.boldSystemFont(ofSize: 13)
-        // lblTitle.textAlignment = NSTextAlignment.center
         return lblTitle
     }()
     

@@ -18,9 +18,7 @@ class ListTableView: UITableView {
     var titleN = ["Cho thue nha nguyen can", "Nha tro gia re", "Nha tro quan 1", "Nha nguyen can Thu Duc", "Nha nguyen can gia re","Cho thue nha nguyen can", "Nha tro gia re", "Nha tro quan 1", "Nha nguyen can Thu Duc", "Nha nguyen can gia re",]
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
-        
-        //self.dataSource = self
-        //self.delegate = self
+
         self.register(ListCell.self, forCellReuseIdentifier: "Cell")
         
     }

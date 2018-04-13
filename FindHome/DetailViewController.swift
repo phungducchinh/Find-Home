@@ -251,7 +251,12 @@ class DetailViewController: UIViewController {
             lblPrice.text = self.infoDetail["price"] as? String
             lblPhone.text = self.infoDetail["phone"] as? String
             txtAdd.text = self.infoDetail["address"] as! String
-            txtDetail.text = self.infoDetail["description"] as! String
+            let descrip = String(describing: self.infoDetail["description"]!)
+            if descrip == "<null>"{
+                txtDetail.text = "Không có mô tả thêm"
+            }else{
+                txtDetail.text = descrip
+            }
              print("Chuyen tu view List sang view Detail")
         }
         else if co == "2"
@@ -263,7 +268,12 @@ class DetailViewController: UIViewController {
             lblPrice.text = self.infoDetail["price"] as? String
             lblPhone.text = self.infoDetail["phone"] as? String
             txtAdd.text = self.infoDetail["address"] as! String
-            txtDetail.text = self.infoDetail["description"] as! String
+            let descrip = String(describing: self.infoDetail["description"]!)
+            if descrip == "<null>"{
+                txtDetail.text = "Không có mô tả thêm"
+            }else{
+                txtDetail.text = descrip
+            }
             print("Chuyen tu view List sang view Detail")
         }
         
@@ -308,7 +318,7 @@ class DetailViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd(40)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[imgPhone(20)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[lblPhone]", options: [], metrics: nil, views: View))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[lblPhone]-10-[detail(100)]", options: [], metrics: nil, views: View))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[lblPhone]-10-[detail]-15-|", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-145-[next(70)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[back(50)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[next(50)]-0-|", options: [], metrics: nil, views: View))
@@ -318,9 +328,11 @@ class DetailViewController: UIViewController {
         self.navigationItem.title = "Thông tin chi tiết"
         //self.navigationItem.backBarButtonItem?.title = "Back"
        // self.navigationItem.hidesBackButton = false
-        let backItem = UIBarButtonItem()
-        backItem.title = "Back"
-        self.navigationItem.backBarButtonItem = backItem
+//        let backItem = UIBarButtonItem()
+//        backItem.title = "Back"
+//        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.backItem?.hidesBackButton = false
+        self.navigationController?.navigationBar.backItem?.title = "Back"
     }
     //}
     

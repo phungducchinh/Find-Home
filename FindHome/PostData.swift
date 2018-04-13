@@ -12,7 +12,7 @@ struct PostData {
     static var imageList = [UIImage]()
     static  var title = ""
     static var price = "" 
-    static var area : CFNumber = 0 as CFNumber
+    static var area : Float = 0
     static var address = ""
     static var phone = ""
     static var more =   ""

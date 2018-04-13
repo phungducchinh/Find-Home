@@ -16,7 +16,6 @@ class ListView: UIView{
         tbvListView.translatesAutoresizingMaskIntoConstraints = false
         tbvListView.backgroundColor = .clear
         tbvListView.separatorStyle = .none
-        //tbvListView.isScrollEnabled = false
         return tbvListView
     }()
 
@@ -24,15 +23,12 @@ class ListView: UIView{
         super.init(frame: frame)
         
         self.addSubview(tbvListView)
-        //self.addSubview(btnBack)
-        //btnBack.addTarget(self, action: #selector(BackView), for: .touchUpInside)
         self.tbvListView.allowsSelection = true
         let views = ["tbv" : self.tbvListView]
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[tbv]-0-|", options: [], metrics: nil, views: views))
         
         self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tbv]-0-|", options: [], metrics: nil, views: views))
-        //self.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-70-[btn]-70-|", options: [], metrics: nil, views: views))
     }
     
     required init?(coder aDecoder: NSCoder) {

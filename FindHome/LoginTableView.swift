@@ -18,11 +18,7 @@ class LoginTableView: UITableView {
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
         
-       // self.dataSource = self
-        //self.delegate = self
         self.register(LoginCell.self, forCellReuseIdentifier: "Cell")
-        
-      
         
     }
     

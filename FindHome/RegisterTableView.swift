@@ -20,9 +20,6 @@ class RegisterTableView: UITableView {
         self.dataSource = self
         self.delegate = self
         self.register(RegisterCell.self, forCellReuseIdentifier: "Cell")
-        
-        
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,8 +38,6 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-            
-           // username = cell.txf.text!
             return cell
             
         }else if (indexPath.row == 1){
@@ -51,8 +46,6 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-           //
-            //password = cell.txf.text!
             cell.txf.isSecureTextEntry = true
             return cell
         }else {
@@ -62,7 +55,6 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
             cell.txf.isSecureTextEntry = true
-           // passwordagain = cell.txf.text!
             return cell
         }
         
@@ -76,10 +68,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1;
     }
-    
-    //    override func numberOfRows(inSection section: Int) -> Int {
-    //        return 1    }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 3
     }

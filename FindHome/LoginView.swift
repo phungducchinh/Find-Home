@@ -74,7 +74,6 @@ class LoginView: UIView {
         
      }
     func RegisterButtonTapped() {
-        print("sàdasdfasfd")
     }
         
 }

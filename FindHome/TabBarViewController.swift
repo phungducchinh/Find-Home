@@ -51,13 +51,6 @@ class TabBarViewController: UITabBarController {
         self.setViewControllers(subviewController, animated: true)
         self.tabBar.backgroundColor = .white
         
-//        viewController1?.title = "Đăng tin"
-//        viewController2?.title = "Trang chủ"
-//        viewController3?.title = "Đăng nhập"
-//        viewController1?.navigationController?.navigationItem.title = "Đăng bài"
-//        viewController2?.navigationController?.navigationItem.title = "Tìm trọ"
-//        viewController3?.navigationController?.navigationItem.title = "Cá nhân"
-        
         self.tabBar.items?[0].title = "Đăng tin"
         self.tabBar.items?[1].title = "Trang chủ"
         self.tabBar.items?[2].title = "Cá nhân"
@@ -76,8 +69,12 @@ class TabBarViewController: UITabBarController {
             // do some tasks..
         }else {
             print("Internet connection FAILED")
-            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Chưa có kết nối mạng internet", message:"Vui lòng kiểm tra lại kết nối mạng", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                print("Kiểm tra kết nối internet")
+            })
+            self.present(alert, animated: true, completion: nil)
         }
     }
 
@@ -92,26 +89,19 @@ extension TabBarViewController: UITabBarControllerDelegate{
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         if (self.selectedViewController == viewController1)
         {
-            viewController1?.self.apitoken = self.apitokenTab
-            print(viewController1?.self.apitoken)
             self.navigationItem.title = "Đăng tin"
             self.navigationItem.hidesBackButton = true
         }
         else if (self.selectedViewController == viewController2)
         {
-            viewController2?.self.apitoken = self.apitokenTab
-             print(viewController1?.self.apitoken)
+            viewController2?.loadApi()
             self.navigationItem.title = "Tìm trọ"
             self.navigationItem.hidesBackButton = true
-            //self.navigationItem.setHidesBackButton(true, animated: true)
         }
         else
         {
-            viewController3?.self.apitoken = self.apitokenTab
-             print(viewController3?.self.apitoken)
+            viewController3?.loadApi()
             self.navigationItem.title = "Các tin đã đăng"
-            //self.navigationController?.navigationBar.backItem?.title = "Đăng xuất"
-            //self.navigationItem.setHidesBackButton(true, animated: true)
         }
 
     }

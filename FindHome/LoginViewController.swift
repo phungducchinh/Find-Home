@@ -60,7 +60,6 @@ class LoginViewController: UIViewController{
 
         self.automaticallyAdjustsScrollViewInsets = false
         
-       // self.view = self.login
         navigationItem.title = "Đăng nhập"
         
         if Connectivity.isConnectedToInternet() {
@@ -68,8 +67,12 @@ class LoginViewController: UIViewController{
             // do some tasks..
         }else {
             print("Internet connection FAILED")
-            var alert = UIAlertView(title: "No Internet Connection", message: "Make sure your device is connected to the internet.", delegate: nil, cancelButtonTitle: "OK")
-            alert.show()
+            let alert = UIAlertController(title: "Chưa có kết nối mạng internet", message:"Vui lòng kiểm tra lại kết nối mạng", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                print("Kiểm tra kết nối internet")
+            })
+            self.present(alert, animated: true, completion: nil)
         }
         tbvLogin.reloadData()
         view.addSubview(tbvLogin)
@@ -106,60 +109,63 @@ class LoginViewController: UIViewController{
         let index1 = IndexPath(row: 0, section: 0)
         if let cell = tbvLogin.cellForRow(at: index1) as? LoginCell {
             tbvLogin.reloadData()
-            print(cell.txf.text!)
+            cell.txf.text = "ducchinhptit@gmail.com"
             username = cell.txf.text!
-            print("username: " + username)
         }
         
         let index2 = IndexPath(row: 1, section: 0)
         if let cell = tbvLogin.cellForRow(at: index2) as? LoginCell {
             tbvLogin.reloadData()
-            print(cell.txf.text!)
+            cell.txf.text = "12345678"
             password = cell.txf.text!
-            print("username: " + username)
         }
         
         let email = username.lowercased()
         let pass = password.lowercased()
         
-        
-        
         if(email == "" || pass == ""){
             tbvLogin.reloadData()
             if(email == "" || pass == ""){
                 print("error")
-                var alert = UIAlertView(title: "Chưa nhập đủ thông tin", message: "Nhập đủ các thông tin trước khi đăng nhập", delegate: nil, cancelButtonTitle: "OK")
-                alert.show()
+                let alert = UIAlertController(title: "Chưa nhập đủ thông tin", message:"Nhập đủ các thông tin trước khi đăng nhập", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                    print("nhap lai thong tin")
+                })
+                self.present(alert, animated: true, completion: nil)
             }
         }else{
-            print(email)
-            print(pass)
-            
             let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
             Alamofire.request(url!, method: .post, parameters: ["email":email,"password":pass], encoding: URLEncoding.httpBody).responseJSON { response in
                 if let json = response.result.value as? [String: Any]
                 {
                     let dicJson = json as NSDictionary
-                    //print(dicJson)
                     let stt =  (dicJson["status"] as? Bool)! //dicJson["message"] as? String
-                    //print(stt)
-                    
+                   
                     if (stt == false ) {
                         print("sai thong tin")
-                        let alert = UIAlertView(title: "Thông tin đăng nhập chưa đúng", message: "Vui lòng nhập lại", delegate: nil, cancelButtonTitle: "OK")
-                        alert.show()
+
+                        let alert = UIAlertController(title: "Thông tin đăng nhập chưa đúng", message:"Xin mời nhập lại", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                            print("nhap lai thong tin")
+                        })
+                        self.present(alert, animated: true, completion: nil)
                     }else
                     {
-                        let name = dicJson["data"] as? [String: Any]//.value(forKey:"api_token")
-                        print(name?["api_token"])
-                        let alert = UIAlertView(title: "Chúc mừng", message: "Login thành công", delegate: nil, cancelButtonTitle: "OK")
-                        alert.show()
-                        self.apiLogin = name?["api_token"] as! String
-                        let abc = ListViewController()
-                        abc.apitoken = self.apiLogin
-                        print("chinh bi dien " + abc.apitoken)
-                        MyApi.appApi = self.apiLogin
-                        self.navigationController?.pushViewController(TabBarViewController(), animated: true)
+                        let name = dicJson["data"] as? [String: Any]
+                        let alert = UIAlertController(title: "Chúc mừng", message: "Login thành công!", preferredStyle: .alert)
+                        
+                        let cancel = UIAlertAction(title: "OK", style: .cancel)
+                        {
+                            (cancel) -> Void in
+                            print("You pressed OK")
+                            self.apiLogin = name?["api_token"] as! String
+                            let abc = ListViewController()
+                            abc.apitoken = self.apiLogin
+                            MyApi.appApi = self.apiLogin
+                            self.navigationController?.pushViewController(TabBarViewController(), animated: true)
+                        }
+                        alert.addAction(cancel)
+                        self.present(alert, animated: true, completion: nil)
                     }
                 }
             }
@@ -170,27 +176,6 @@ class LoginViewController: UIViewController{
         let destination = RegisterViewController() // Your destination
         navigationController?.pushViewController(destination, animated: true)
     }
-    
-    func LoginDone(){
-        print("Login thanh cong")
-        
-    }
-    
-    func LoginTodo(){
-        print("Login khong thanh cong")
-    }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
@@ -223,8 +208,6 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
         return 40
     }
     
-    //    override func numberOfRows(inSection section: Int) -> Int {
-    //        return 1    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return holder.count

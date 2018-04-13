@@ -24,7 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UINavigationBar.appearance().barTintColor = UIColor(red: 254/255, green: 80/255, blue: 4/255, alpha: 1)
         UINavigationBar.appearance().titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
-        UINavigationBar.appearance().tintColor = .clear
+        UINavigationBar.appearance().tintColor = .white
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.clear], for: .normal)
+        //UIBarButtonItem.init(title: nil, style: .plain, target: Any?.self, action: nil)
+
         return true
     }
 
