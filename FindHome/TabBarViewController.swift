@@ -57,7 +57,7 @@ class TabBarViewController: UITabBarController {
         self.selectedIndex = 1
         self.navigationItem.title = "Tìm trọ"
         self.navigationItem.hidesBackButton = true
-        
+     
         let selectedColor   = UIColor(red: 254/255.0, green: 80/255.0, blue: 5/255.0, alpha: 1.0)
         let unselectedColor = UIColor(red: 5/255.0, green: 5/255.0, blue: 5/255.0, alpha: 1.0)
         
@@ -77,7 +77,31 @@ class TabBarViewController: UITabBarController {
             self.present(alert, animated: true, completion: nil)
         }
     }
-
+    
+    func Logout(){
+        print("log out")
+        let vc = LoginViewController()
+        MyApi.appApi = ""
+        defaultsKeys.keyOne = ""
+        defaultsKeys.keyTwo = ""
+        vc.defaults.removeObject(forKey: defaultsKeys.keyOne)
+        vc.defaults.removeObject(forKey: defaultsKeys.keyTwo)
+        
+        
+        vc.defaApi.removeObject(forKey: "api")
+        if let apiname = vc.defaApi.string(forKey: "api"){
+            print("api delete " + apiname)
+        }
+        
+        DataLogin.emailLogin = ""
+        DataLogin.passLogin = ""
+        print("email" + defaultsKeys.keyOne)
+        print("pass" + defaultsKeys.keyTwo)
+//        print("email" + DataLogin.emailLogin)
+//        print("pass" + DataLogin.passLogin)
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,18 +115,33 @@ extension TabBarViewController: UITabBarControllerDelegate{
         {
             self.navigationItem.title = "Đăng tin"
             self.navigationItem.hidesBackButton = true
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.clear], for: .normal)
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
         }
         else if (self.selectedViewController == viewController2)
         {
             viewController2?.loadApi()
             self.navigationItem.title = "Tìm trọ"
             self.navigationItem.hidesBackButton = true
+            self.navigationItem.rightBarButtonItem = nil
+            self.navigationItem.rightBarButtonItem?.isEnabled = false
+            self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName: UIColor.clear], for: .normal)
         }
         else
         {
             viewController3?.loadApi()
             self.navigationItem.title = "Các tin đã đăng"
+            let btn1 = UIButton(type: .custom)
+            btn1.setImage(UIImage(named: "logout1-1"), for: .normal)
+            btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)
+            btn1.addTarget(self, action: #selector(self.Logout), for: .touchUpInside)
+            let item1 = UIBarButtonItem(customView: btn1)
+            self.navigationItem.setRightBarButtonItems([item1], animated: true)
+           // self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"Add-icon new"), style: .plain, target: self, action: #selector(self.Logout))
         }
-
+        
     }
+    
+    
 }

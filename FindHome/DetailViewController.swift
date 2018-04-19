@@ -283,6 +283,10 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
       
+        
+       // self.navigationItem.hidesBackButton = true
+        self.navigationItem.backBarButtonItem?.setTitleTextAttributes(nil, for: .normal)
+        
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.lblName)
         self.view.addSubview(self.imgPrice)

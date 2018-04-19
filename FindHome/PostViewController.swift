@@ -9,7 +9,7 @@
 import UIKit
 import Alamofire
 
-class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     var apitoken = ""
     var infoPost = NSDictionary()
@@ -22,6 +22,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     var phone = ""
     var more = ""
     var id = ""
+    
+    var tap = "0"
     
     let td = ["Tiêu đề:","Giá phòng:","Diện tích:","Điện thoại:","Địa chỉ:"]
     let placehoder = ["Cho thuê nhà nguyên căn", "1.500.000 đ", "12 mét vuông", "01234567899", "Lã Xuân Oai, Quận 9"]
@@ -273,6 +275,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        txfMore.delegate = self
+        
         if Connectivity.isConnectedToInternet() {
             print("Yes! internet is available.")
             // do some tasks..
@@ -310,6 +314,10 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
             txfMore.text! = more
             btnADd.addTarget(self , action: #selector(PutInfo), for: .touchUpInside)
         }
+        //key board
+        txfMore.delegate = self
+        txfMore.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .touchDown)
+        
         
         tbvPost.delegate = self
         tbvPost.dataSource = self
@@ -334,7 +342,33 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-105-[img3(70)]", options: [], metrics: nil, views: View))
         
     }
+    
+    func textFieldDidChange(_ textField: UITextField) {
+        print("tap texxt")
+        tap = "1"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(PostViewController.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
+    }
 
+    func keyboardWillShow(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -343,6 +377,8 @@ class PostViewController: UIViewController, UIImagePickerControllerDelegate, UIN
 }
 
 extension PostViewController : UITableViewDelegate, UITableViewDataSource{
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 25
@@ -362,26 +398,32 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
                      cell.name = td[indexPath.row]
                     cell.txfInfo.text! = titleName
+                    cell.txfInfo.delegate = self
                     return cell
                 }else if indexPath.row == 1 {
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
                     cell.name = td[indexPath.row]
                     cell.txfInfo.text! = price
+                    cell.txfInfo.delegate = self
                     return cell
                 }else if indexPath.row == 2{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
                     cell.name = td[indexPath.row]
                     cell.txfInfo.text = String(area)
+                    cell.txfInfo.keyboardType = .numberPad
+                    cell.txfInfo.delegate = self
                     return cell
                 }else if indexPath.row == 3{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
                     cell.name = td[indexPath.row]
                     cell.txfInfo.text! = phone
+                    cell.txfInfo.delegate = self
                     return cell
                 }else{
                     let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! PostCell
                     cell.name = td[indexPath.row]
                     cell.txfInfo.text! = address
+                    cell.txfInfo.delegate = self
                     return cell
                 }
             }else{
@@ -389,8 +431,14 @@ extension PostViewController : UITableViewDelegate, UITableViewDataSource{
             
                 cell.name = td[indexPath.row]
                 cell.hiden = placehoder[indexPath.row]
-            
+                cell.txfInfo.delegate = self
                 return cell
             }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true
     }
 }

@@ -44,7 +44,7 @@ class ListViewController: UIViewController {
             })
             self.present(alert, animated: true, completion: nil)
         }
-
+        print(MyApi.appApi)
         apitoken = MyApi.appApi
         view.addSubview(tbvListView)
         
@@ -112,7 +112,8 @@ extension ListViewController: UITableViewDelegate, UITableViewDataSource {
         if self.dataShow.count > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! ListCell
             self.info = self.dataShow[indexPath.row] 
-            cell.img = img[indexPath.row]
+            //cell.img = img[indexPath.row]
+            cell.img = UIImage(named: "1")
             cell.address = self.info["address"] as? String
             cell.money = self.info["price"] as? String
             let number = self.info["acreage"] as! CFNumber

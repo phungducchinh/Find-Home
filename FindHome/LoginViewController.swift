@@ -8,9 +8,15 @@
 
 import UIKit
 import Alamofire
-//import swi
 
 class LoginViewController: UIViewController{
+    
+    let defaults = UserDefaults.standard
+    let defaApi = UserDefaults.standard
+    
+    
+    
+    let dict:[String:String] = ["email":"", "pass" : ""]
     
     let login = LoginView()
     var apiLogin = ""
@@ -57,9 +63,72 @@ class LoginViewController: UIViewController{
         super.viewDidLoad()
         
         btnLogin.addTarget(self, action: #selector(signInButtonTapped), for: .touchUpInside)
-
-        self.automaticallyAdjustsScrollViewInsets = false
         
+//        let stringOne = defaults.string(forKey: defaultsKeys.keyOne)
+//        print("chinh" + stringOne!) // Some String Value
+//        
+//        let stringTwo = defaults.string(forKey: defaultsKeys.keyTwo)
+//       print("chinh pass" + stringTwo!)
+        
+    
+//        let email = stringOne!
+//        let passw = stringTwo!
+//        
+//        let email = DataLogin.emailLogin
+//        let passw = DataLogin.passLogin
+//         print("chinh khung" + email)
+//        
+//        let alert = UIAlertController(title: email, message:passw, preferredStyle: .alert)
+//        alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+//            print("nhap lai thong tin")
+//        })
+//        self.present(alert, animated: true, completion: nil)
+//        if ((email != "") && (passw != "")){
+//            print(email)
+//            let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_in")
+//            Alamofire.request(url!, method: .post, parameters: ["email":email,"password":passw], encoding: URLEncoding.httpBody).responseJSON { response in
+//                if let json = response.result.value as? [String: Any]
+//                {
+//                    let dicJson = json as NSDictionary
+//                    let stt =  (dicJson["status"] as? Bool)! //dicJson["message"] as? String
+//                    
+//                    if (stt == false ) {
+//                        print("sai thong tin")
+//                        
+//                        let alert = UIAlertController(title: "Thông tin đăng nhập chưa đúng", message:"Xin mời nhập lại", preferredStyle: .alert)
+//                        alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+//                            print("nhap lai thong tin")
+//                        })
+//                        self.present(alert, animated: true, completion: nil)
+//                    }else
+//                    {
+//                        let name = dicJson["data"] as? [String: Any]
+//                        let alert = UIAlertController(title: "Chúc mừng", message: "Login thành công!", preferredStyle: .alert)
+//                        
+//                        let cancel = UIAlertAction(title: "OK", style: .cancel)
+//                        {
+//                            (cancel) -> Void in
+//                            print("You pressed OK")
+//                            self.apiLogin = name?["api_token"] as! String
+//                            let abc = ListViewController()
+//                            abc.apitoken = self.apiLogin
+//                            MyApi.appApi = self.apiLogin
+//                            self.navigationController?.pushViewController(TabBarViewController(), animated: true)
+//                        }
+//                        alert.addAction(cancel)
+//                        self.present(alert, animated: true, completion: nil)
+//                    }
+//                }
+//            }
+        //}
+        
+        if let apiname = defaApi.string(forKey: "api")
+        {
+            print("api default" + apiname)
+        }
+        self.navigationItem.hidesBackButton = true
+        self.automaticallyAdjustsScrollViewInsets = false
+        print(MyApi.appApi)
         navigationItem.title = "Đăng nhập"
         
         if Connectivity.isConnectedToInternet() {
@@ -85,7 +154,9 @@ class LoginViewController: UIViewController{
         tbvLogin.delegate = self
         tbvLogin.register(LoginCell.self, forCellReuseIdentifier: "Cell")
 
-        
+        self.navigationItem.backBarButtonItem?.title = ""
+        self.navigationItem.backBarButtonItem?.isEnabled = false
+        self.navigationItem.leftBarButtonItem?.isEnabled = false
         self.tbvLogin.allowsSelection = false
         let views = ["tbv" : self.tbvLogin, "btnLogin" : self.btnLogin, "btnFogot" : self.btnRegister] as [String : Any]
         
@@ -122,6 +193,14 @@ class LoginViewController: UIViewController{
         
         let email = username.lowercased()
         let pass = password.lowercased()
+        
+//        DataLogin.emailLogin = email
+//        DataLogin.passLogin = pass
+        
+        
+
+//        defaults.set(email, forKey: defaultsKeys.keyOne)
+//        defaults.set(pass, forKey: defaultsKeys.keyTwo)
         
         if(email == "" || pass == ""){
             tbvLogin.reloadData()
@@ -162,6 +241,10 @@ class LoginViewController: UIViewController{
                             let abc = ListViewController()
                             abc.apitoken = self.apiLogin
                             MyApi.appApi = self.apiLogin
+                            //default user
+                            self.defaApi.set(MyApi.appApi, forKey: "api")
+                            self.defaApi.synchronize()
+                            //
                             self.navigationController?.pushViewController(TabBarViewController(), animated: true)
                         }
                         alert.addAction(cancel)
@@ -178,7 +261,7 @@ class LoginViewController: UIViewController{
     }
 }
 
-extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
+extension LoginViewController : UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if (indexPath.row == 0) {
@@ -187,7 +270,7 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
-            
+            cell.txf.delegate = self
             username = cell.txf.text!
             return cell
             
@@ -199,6 +282,7 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = .white
             cell.txf.isSecureTextEntry = true
             password = cell.txf.text!
+            cell.txf.delegate = self
             return cell
         }
     }
@@ -213,4 +297,9 @@ extension LoginViewController : UITableViewDelegate, UITableViewDataSource {
         return holder.count
     }
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        textField.resignFirstResponder()
+        return true
+    }
 }

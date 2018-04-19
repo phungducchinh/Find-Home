@@ -67,9 +67,14 @@ class HistoryViewController: UIViewController {
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tbv]-0-|", options: [], metrics: nil, views: views))
         
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"camera"), style: .plain, target: self, action: #selector(Logout))
         
         navigationItem.title = "Các tin đã đăng"
         // Do any additional setup after loading the view.
+    }
+    
+    func Logout(){
+        print("log out")
     }
 
     func loadApi(){
@@ -102,7 +107,8 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
         if self.dataShow.count > 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! HistoryCell
             self.info = self.dataShow[indexPath.row] 
-            cell.img = img[indexPath.row]
+            //cell.img = img[indexPath.row]
+            cell.img = UIImage(named: "1")
             cell.address = self.info["address"] as? String
             cell.money = self.info["price"] as? String
             let number = self.info["acreage"] as! CFNumber
@@ -159,7 +165,14 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
                 sua.area = self.info["acreage"] as! Float
                 sua.phone = self.info["phone"] as! String
                 sua.address = self.info["address"] as! String
-                sua.more = self.info["description"] as! String
+                //sua.more = self.info["description"] as! String
+                let descrip = String(describing: self.info["description"]!)
+                    if descrip == "<null>"{
+                       sua.more  = "Không có mô tả thêm"
+                    }else{
+                        sua.more = descrip
+                    }
+
                 self.navigationController?.pushViewController(sua, animated: true)
             }
             edit.backgroundColor = .red
