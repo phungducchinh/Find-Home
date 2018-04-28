@@ -38,7 +38,7 @@
 		7E601C5B2018C464001FD6BA /* FindHomeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C5A2018C464001FD6BA /* FindHomeTests.swift */; };
 		7E601C662018C464001FD6BA /* FindHomeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E601C652018C464001FD6BA /* FindHomeUITests.swift */; };
 		7E8A35AC207CFD2700F35BF4 /* NulCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8A35AB207CFD2700F35BF4 /* NulCellTableViewCell.swift */; };
-		7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8B329A206FDF04003D5D84 /* DetailViewController.swift */; };
+		7EB79CA7208B6F3A001E792A /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB79CA6208B6F3A001E792A /* DetailViewController.swift */; };
 		7EC3209C206E8B340074F9D6 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32098206E8B340074F9D6 /* RegisterView.swift */; };
 		7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC32099206E8B340074F9D6 /* RegisterViewController.swift */; };
 		7EC3209F206E8F510074F9D6 /* RegisterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EC3209E206E8F510074F9D6 /* RegisterCell.swift */; };
@@ -64,6 +64,19 @@
 			remoteInfo = FindHome;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EF91622208E201A00B75453 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		09AD0DA20982B4E89CD5589E /* Pods_FindHome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FindHome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,7 +121,7 @@
 		7E601C652018C464001FD6BA /* FindHomeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindHomeUITests.swift; sourceTree = "<group>"; };
 		7E601C672018C464001FD6BA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E8A35AB207CFD2700F35BF4 /* NulCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NulCellTableViewCell.swift; sourceTree = "<group>"; };
-		7E8B329A206FDF04003D5D84 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		7EB79CA6208B6F3A001E792A /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		7EC32098206E8B340074F9D6 /* RegisterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		7EC32099206E8B340074F9D6 /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7EC3209E206E8F510074F9D6 /* RegisterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterCell.swift; sourceTree = "<group>"; };
@@ -271,7 +284,7 @@
 		7E9A347A206A2B1800E9D829 /* DetailView */ = {
 			isa = PBXGroup;
 			children = (
-				7E8B329A206FDF04003D5D84 /* DetailViewController.swift */,
+				7EB79CA6208B6F3A001E792A /* DetailViewController.swift */,
 			);
 			name = DetailView;
 			sourceTree = "<group>";
@@ -313,6 +326,7 @@
 				7E601C3D2018C464001FD6BA /* Resources */,
 				3D02DD531492C9ECD99D7B2D /* [CP] Embed Pods Frameworks */,
 				190FD2A8D8968CE12C4752B2 /* [CP] Copy Pods Resources */,
+				7EF91622208E201A00B75453 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -595,7 +609,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7E8B329B206FDF04003D5D84 /* DetailViewController.swift in Sources */,
 				7E8A35AC207CFD2700F35BF4 /* NulCellTableViewCell.swift in Sources */,
 				7EC3209D206E8B340074F9D6 /* RegisterViewController.swift in Sources */,
 				7E394D7420621F9C0038A330 /* PostTableView.swift in Sources */,
@@ -603,6 +616,7 @@
 				7E394D7620621FA80038A330 /* PostView.swift in Sources */,
 				7E5D6ECB2062B4B9001737B6 /* LoginView.swift in Sources */,
 				7E394D88206220FD0038A330 /* HistoryViewController.swift in Sources */,
+				7EB79CA7208B6F3A001E792A /* DetailViewController.swift in Sources */,
 				7E21060920787FF50095F8E7 /* MyApi.swift in Sources */,
 				7EC320A1206E8FAC0074F9D6 /* RegisterTableView.swift in Sources */,
 				7EC320A3206E965C0074F9D6 /* LoginCell.swift in Sources */,

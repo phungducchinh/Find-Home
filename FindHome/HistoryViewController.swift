@@ -23,6 +23,41 @@ class HistoryViewController: UIViewController {
         return tbv
     }()
     
+    
+//    public let lblPhone : UILabel = {
+//        let lblPhone = UILabel()
+//        lblPhone.translatesAutoresizingMaskIntoConstraints = false
+//        lblPhone.text = "01234456569"
+//        lblPhone.font = lblPhone.font.withSize(15)
+//        return lblPhone
+//    }()
+//    
+//    public let lblname : UILabel = {
+//        let lblname = UILabel()
+//        lblname.translatesAutoresizingMaskIntoConstraints = false
+//        lblname.text = "Phùng Đức Chính"
+//        lblname.font = lblname.font.withSize(15)
+//        return lblname
+//    }()
+//    
+//    public let lblEmal : UILabel = {
+//        let lblEmal = UILabel()
+//        lblEmal.translatesAutoresizingMaskIntoConstraints = false
+//        lblEmal.text = "chinh@gmail.com"
+//        lblEmal.font = lblEmal.font.withSize(15)
+//        return lblEmal
+//    }()
+//    
+//    fileprivate let btnADd : UIButton = {
+//        let btnADd = UIButton()
+//        btnADd.backgroundColor = UIColor(red: 1/255.0, green: 143/255.0, blue: 255/255.0, alpha: 1.0)
+//        btnADd.setTitleColor(.white , for: .normal)
+//        btnADd.translatesAutoresizingMaskIntoConstraints = false
+//        btnADd.setTitle("Cập nhật", for: .normal)
+//        btnADd.layer.cornerRadius = 7
+//        return btnADd
+//    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         apitoken = MyApi.appApi
@@ -59,17 +94,32 @@ class HistoryViewController: UIViewController {
         }
         
         view.addSubview(tbv)
+//        view.addSubview(lblPhone)
+//        view.addSubview(lblname)
+//        view.addSubview(lblEmal)
+//        view.addSubview(btnADd)
         self.tbv.allowsSelection = true
         let views = ["tbv" : self.tbv]
+//        
+//        let views = ["tbv" : self.tbv, "phone" : self.lblPhone, "name" : self.lblname, "email" : self.lblEmal, "btn" : self.btnADd]
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-60-[tbv]-50-|", options: [], metrics: nil, views: views))
         
         view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tbv]-0-|", options: [], metrics: nil, views: views))
+//        
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[name(20)]-5-[email(20)]-5-[phone(20)]-10-[tbv]-50-|", options: [], metrics: nil, views: views))
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[btn(40)]", options: [], metrics: nil, views: views))
+//        
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[tbv]-0-|", options: [], metrics: nil, views: views))
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[name]-20-[btn(100)]-20-|", options: [], metrics: nil, views: views))
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[email]-0-|", options: [], metrics: nil, views: views))
+//        view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-20-[phone]-0-|", options: [], metrics: nil, views: views))
+
         
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named:"camera"), style: .plain, target: self, action: #selector(Logout))
         
-        navigationItem.title = "Các tin đã đăng"
+        navigationItem.title = "Cá nhân"
         // Do any additional setup after loading the view.
     }
     
@@ -211,6 +261,8 @@ extension HistoryViewController : UITableViewDelegate, UITableViewDataSource {
             self.info = self.dataShow[indexPath.row] 
             vc.infoDetail = self.info
             vc.co = "2"
+            vc.navigationItem.backBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        
             navigationController?.pushViewController(vc, animated: true)
        }else {
             print("nothing tab")

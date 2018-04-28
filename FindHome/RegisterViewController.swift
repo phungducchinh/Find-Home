@@ -15,6 +15,12 @@ class RegisterViewController: UIViewController{
     var username = ""
     var password = ""
     var passwordagain = ""
+    var name = ""
+    var phone = ""
+    
+    var email = ""
+    var pass = ""
+    var repass = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,11 +84,38 @@ class RegisterViewController: UIViewController{
             passwordagain = cell.txf.text!
         }
         
-        let email = username.lowercased()
-        let pass = password.lowercased()
-        let repass = passwordagain.lowercased()
+//        let index4 = IndexPath(row: 3, section: 0)
+//        if let cell = regis.tbvLogin.cellForRow(at: index4) as? RegisterCell {
+//            regis.tbvLogin.reloadData()
+//            name = cell.txf.text!
+//        }
+//        
+//        let index5 = IndexPath(row: 4, section: 0)
+//        if let cell = regis.tbvLogin.cellForRow(at: index5) as? RegisterCell {
+//            regis.tbvLogin.reloadData()
+//            phone = cell.txf.text!
+//        }
         
-        if(email == "" || pass == "" || repass == ""){
+         email = username.lowercased()
+         pass = password.lowercased()
+         repass = passwordagain.lowercased()
+    
+        if pass.characters.count < 6 {
+            print("error")
+            let alert = UIAlertController(title: "Mật khẩu tối đa 6 ký tự", message:"Vui lòng nhập lại mật khẩu trước khi đăng ký", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                print("Mật khẩu chưa đúng")
+            })
+            self.present(alert, animated: true, completion: nil)
+        }else{
+            self.Register()
+        }
+        
+    }
+
+    func Register()  {
+        if( self.email == "" || self.pass == "" || self.repass == ""){
             print("error")
             let alert = UIAlertController(title: "Chưa có nhập đủ thông tin", message:"Vui lòng nhập đầy đủ thông tin trước khi đăng ký", preferredStyle: .alert)
             
@@ -93,12 +126,12 @@ class RegisterViewController: UIViewController{
         }else{
             
             let url = URL(string: "https://matas-app.herokuapp.com/api/v1/auth/sign_up")
-            Alamofire.request(url!, method: .post, parameters: ["email":email,"password":pass,"password_confirmation":repass], encoding: URLEncoding.httpBody).responseJSON { response in
+            Alamofire.request(url!, method: .post, parameters: ["email":self.email,"password":self.pass,"password_confirmation":self.repass], encoding: URLEncoding.httpBody).responseJSON { response in
                 if let json = response.result.value as? [String: Any]
                 {
                     let dicJson = json as NSDictionary
                     let stt =  (dicJson["status"] as? Bool)! //dicJson["message"] as? String
-                   
+                    
                     if (stt == false ) {
                         let alert = UIAlertController(title: "Thông tin đăng ký chưa đúng", message:"Vui lòng nhập lại", preferredStyle: .alert)
                         
@@ -117,6 +150,8 @@ class RegisterViewController: UIViewController{
                             let abc = ListViewController()
                             abc.apitoken = self.apiRegis
                             MyApi.appApi = self.apiRegis
+//                            self.PutInfoUser()
+//                            print(self.name)
                             self.navigationController?.pushViewController(TabBarViewController(), animated: true)
                         })
                         self.present(alert, animated: true, completion: nil)
@@ -124,6 +159,48 @@ class RegisterViewController: UIViewController{
                 }
             }
         }
+
+    }
+    
+    func PutInfoUser(){
+       
+        
+        let abc = "https://matas-app.herokuapp.com/api/v1/user"
+        
+        let headers: HTTPHeaders = [
+            "Http-Auth-Token": MyApi.appApi,
+            "Accept": "application/json"
+        ]
+        
+        let param = ["username" : self.name , "phone" : self.phone] as [String : Any]
+        
+        
+        
+        Alamofire.request(abc, method: HTTPMethod.put, parameters: param, headers: headers).responseJSON { response in
+            if let json = response.result.value as? [String: Any]
+            {
+                let dict = json as NSDictionary
+                let status = dict["status"] as? Bool //[String: Any]
+                if status == true{
+                    
+                    let alert = UIAlertController(title: "Bạn đã cập nhật thành công", message:"", preferredStyle: .alert)
+                    
+                    alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default) { action in
+                        print("Cập nhật thành công")
+                    })
+                    self.present(alert, animated: true, completion: nil)
+                    
+                }else{
+                    let alert = UIAlertController(title: "Cập nhật không thành công", message: "Vui lòng kiểm tra và cập nhật lại!", preferredStyle: .alert)
+                    let ok = UIAlertAction(title: "OK", style: .default, handler: { (action) -> Void in
+                        print("Huỷ")
+                    })
+                    alert.addAction(ok)
+                    alert.present(self, animated: true, completion: nil)
+                }
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

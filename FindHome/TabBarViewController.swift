@@ -131,7 +131,7 @@ extension TabBarViewController: UITabBarControllerDelegate{
         else
         {
             viewController3?.loadApi()
-            self.navigationItem.title = "Các tin đã đăng"
+            self.navigationItem.title = "Cá nhân"
             let btn1 = UIButton(type: .custom)
             btn1.setImage(UIImage(named: "logout1-1"), for: .normal)
             btn1.frame = CGRect(x: 0, y: 0, width: 30, height: 30)

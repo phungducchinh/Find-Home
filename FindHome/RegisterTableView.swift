@@ -12,7 +12,7 @@ import UIKit
 class RegisterTableView: UITableView {
     
     var imgname = [UIImage(named: "user")!,UIImage(named: "pass")!, UIImage(named: "pass")! ]
-    var holder = ["Email/Số điện thoại", "Mật khẩu", "Nhập lại mật khẩu" ]
+    var holder = ["Email", "Mật khẩu", "Nhập lại mật khẩu" ]
     
     override init(frame: CGRect, style: UITableViewStyle) {
         super.init(frame: frame, style: style)
@@ -35,6 +35,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
         if (indexPath.row == 0) {
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell") as! RegisterCell
             
+            cell.txf.isSecureTextEntry = false
             cell.imaname = imgname[indexPath.row]
             cell.txfname = holder[indexPath.row]
             cell.backgroundColor = .white
@@ -70,7 +71,7 @@ extension RegisterTableView : UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return imgname.count
     }
     
 }

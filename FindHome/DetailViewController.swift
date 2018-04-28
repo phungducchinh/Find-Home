@@ -12,19 +12,15 @@ import UIKit
 class DetailViewController: UIViewController {
     
     var co = "" // nhan gia tri co tu bien Post (0 )hoac List(1) hoac History(2)
-    
-        //    let detail = DetailView()
-//    let imageList : [UIImage]  = [UIImage(named: "1")!, UIImage(named: "2")!, UIImage(named: "3")!, UIImage(named: "4")!, UIImage(named: "5")!]
-    
     var imageListDt : [UIImage] = []
-    
     var infoDetail = NSDictionary()
     
-    fileprivate let imageView : UIImageView = {
+    var img : [UIImage] = [UIImage(named: "1")!,UIImage(named: "2")!,UIImage(named: "3")!]
+    
+    fileprivate var imageView : UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "1")!
+        imageView.image = #imageLiteral(resourceName: "placeholderimg")
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        
         return imageView
     }()
     public var setImage : UIImage?{
@@ -37,7 +33,7 @@ class DetailViewController: UIViewController {
         lblName.translatesAutoresizingMaskIntoConstraints = false
         lblName.text = ""
         lblName.textAlignment = NSTextAlignment.center
-        lblName.font = lblName.font.withSize(16)
+        lblName.font = UIFont.boldSystemFont(ofSize: 16)
         return lblName
     }()
     
@@ -97,28 +93,25 @@ class DetailViewController: UIViewController {
         
         return imgAddress
     }()
-    public let lblAddress : UILabel = {/// khong su dug
-        let lblAddress = UILabel()
-        lblAddress.translatesAutoresizingMaskIntoConstraints = false
-        lblAddress.text = "97 Man Thiện, P. Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh"
-        lblAddress.font = lblAddress.font.withSize(15)
-        lblAddress.sizeToFit()
-        return lblAddress
+    public let txtDetail : UITextView = {
+        let txtDetail = UITextView()
+        txtDetail.translatesAutoresizingMaskIntoConstraints = false
+        txtDetail.text = ""
+        txtDetail.isEditable = false //ko hiển thị bàn phím, cuộn được
+        txtDetail.sizeToFit() //tự điều chỉnh dòng
+        txtDetail.font = .systemFont(ofSize: 15)
+        return txtDetail
     }()
-    
-    public var setAddress : String?{
-        didSet{
-            lblAddress.text = setAddress
-        }
-    }
     
     public let txtAdd : UITextView = {
         let txtAdd = UITextView()
         txtAdd.translatesAutoresizingMaskIntoConstraints = false
-        txtAdd.text = "97 Man Thiện, P. Hiệp Phú, Quận 9, Thành phố Hồ Chí Minh"
-        txtAdd.font = txtAdd.font?.withSize(15)
-        txtAdd.isUserInteractionEnabled = false //ko hiển thị bàn phím, ko cuộn được
+        txtAdd.text = ""
+        txtAdd.textContainer.maximumNumberOfLines = 2
+        txtAdd.font = .systemFont(ofSize: 15)
         txtAdd.sizeToFit() //tự điều chỉnh dòng
+        txtAdd.isEditable = false
+        txtAdd.isScrollEnabled = true
         return txtAdd
     }()
     
@@ -143,21 +136,19 @@ class DetailViewController: UIViewController {
         return lblPhone
     }()
     
+    public let lblMet : UILabel = {
+        let lblMet = UILabel()
+        lblMet.translatesAutoresizingMaskIntoConstraints = false
+        lblMet.text = "m2"
+        lblMet.font = lblMet.font.withSize(15)
+        return lblMet
+    }()
     public var setPhone : String?{
         didSet{
             lblPhone.text = setPhone
         }
     }
     
-    public let txtDetail : UITextView = {
-        let txtDetail = UITextView()
-        txtDetail.translatesAutoresizingMaskIntoConstraints = false
-        txtDetail.text = "Căn hộ thuộc chung cư Jamona City đường Đào Trí, quận 7 gồm 2 phòng ngủ, 2 toilet, bếp, phòng khách, nhà trống, nội thất cơ bản như hình, có khu phơi quần áo, ban công thoáng mát. Di chuyển qua quận 1, 8, ,4, 2, bình chánh, nhà bè rất gần, gần siêu thị, chợ, trường học và bệnh viện quận 7, gần trung tâm phú mỹ hưng. Thích hợp cho gia đình ở thuê lâu dài. Tiếp người thiện chí"
-        txtDetail.font = txtDetail.font?.withSize(15)
-        txtDetail.isEditable = false //ko hiển thị bàn phím, cuộn được
-        txtDetail.sizeToFit() //tự điều chỉnh dòng
-        return txtDetail
-    }()
     
     public var setDetail : String?{
         didSet{
@@ -174,6 +165,7 @@ class DetailViewController: UIViewController {
         
         return btnNext
     }()
+    
     fileprivate let btnBack : UIButton = {
         let btnBack = UIButton()
         btnBack.translatesAutoresizingMaskIntoConstraints = false
@@ -185,25 +177,17 @@ class DetailViewController: UIViewController {
     func loadImage(){
         if co == "0"
         {
-            imageListDt = PostData.imageList
-        }
-        else if co == "1"
-        {
-            let img = infoDetail["image"] as! [UIImage]
-            imageListDt = img
+            self.imageListDt = PostData.imageList
         }
         else {
-            let img = infoDetail["image"] as! [UIImage]
-            imageListDt = img
-       }
+            self.imageListDt = self.img
+        }
     }
     
     
     func backImage()
     {
         loadImage()
-        //imageListDt = dataD.imageList
-        print("back")
         if (self.dem == 0) {
             dem = imageListDt.count-1
             setImage = imageListDt[dem]
@@ -217,7 +201,7 @@ class DetailViewController: UIViewController {
     func nextImage()
     {
         loadImage()
-       // imageListDt = dataD.imageList
+        // imageListDt = dataD.imageList
         print("next")
         if (dem == self.imageListDt.count-1) {
             dem = 0
@@ -257,13 +241,12 @@ class DetailViewController: UIViewController {
             }else{
                 txtDetail.text = descrip
             }
-             print("Chuyen tu view List sang view Detail")
+            print("Chuyen tu view List sang view Detail")
         }
         else if co == "2"
         {
             lblName.text = self.infoDetail["title"] as? String
             let number = self.infoDetail["acreage"] as! CFNumber
-            print(number)
             lblArea.text = String(describing: number)
             lblPrice.text = self.infoDetail["price"] as? String
             lblPhone.text = self.infoDetail["phone"] as? String
@@ -282,10 +265,6 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-      
-        
-       // self.navigationItem.hidesBackButton = true
-        self.navigationItem.backBarButtonItem?.setTitleTextAttributes(nil, for: .normal)
         
         self.view.addSubview(self.imageView)
         self.view.addSubview(self.lblName)
@@ -294,31 +273,29 @@ class DetailViewController: UIViewController {
         self.view.addSubview(self.imgArea)
         self.view.addSubview(self.lblArea)
         self.view.addSubview(self.imgAddress)
-        //        self.addSubview(self.lblAddress)
         self.view.addSubview(self.txtAdd)
         self.view.addSubview(self.imgPhone)
         self.view.addSubview(self.lblPhone)
         self.view.addSubview(self.txtDetail)
         self.view.addSubview(self.btnNext)
         self.view.addSubview(self.btnBack)
-        
+        self.view.addSubview(self.lblMet)
         loadInfo()// load data truyen tu view PostController
         
-        let View = ["img" : self.imageView, "lblName" : self.lblName, "imgPrice" : self.imgPrice, "lblPrice" : self.lblPrice, "imgArea" : self.imgArea, "lblArea":self.lblArea,"imgAdd":self.imgAddress, "lblAdd":self.txtAdd, "imgPhone":self.imgPhone, "lblPhone" : self.lblPhone, "detail" : self.txtDetail, "next" : self.btnNext, "back" : self.btnBack] as [String : Any]
+        let View = ["img" : self.imageView, "lblName" : self.lblName, "imgPrice" : self.imgPrice, "lblPrice" : self.lblPrice, "imgArea" : self.imgArea, "lblArea":self.lblArea,"imgAdd":self.imgAddress, "lblAdd":self.txtAdd, "imgPhone":self.imgPhone, "lblPhone" : self.lblPhone, "detail" : self.txtDetail, "next" : self.btnNext, "back" : self.btnBack, "m2" : self.lblMet] as [String : Any]
         
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[img]-15-|", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[lblName]-15-|", options: [], metrics: nil, views: View))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[imgPrice(20)]-3-[lblPrice]-50-[imgArea(20)]-3-[lblArea]-15-|", options: [], metrics: nil, views: View))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[imgPrice(20)]-3-[lblPrice]-30-[imgArea(20)]-3-[lblArea]-13-[m2]-15-|", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[imgAdd(20)]-3-[lblAdd]-15-|", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[imgPhone(20)]-3-[lblPhone]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-15-[detail]-15-|", options: [], metrics: nil, views: View))
-        
-        
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[imgPrice(20)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblPrice]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[imgArea(20)]", options: [], metrics: nil, views: View))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[m2(20)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]", options: [], metrics: nil, views: View))
-        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[imgAdd(20)]", options: [], metrics: nil, views: View))
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-15-[imgAdd(20)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd(40)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[imgPhone(20)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-70-[img(200)]-3-[lblName]-[lblArea]-[lblAdd]-[lblPhone]", options: [], metrics: nil, views: View))
@@ -327,34 +304,40 @@ class DetailViewController: UIViewController {
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[back(50)]", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[next(50)]-0-|", options: [], metrics: nil, views: View))
         self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:|-145-[back(70)]", options: [], metrics: nil, views: View))
-        
-        //        self.view = self.detail
         self.navigationItem.title = "Thông tin chi tiết"
-        //self.navigationItem.backBarButtonItem?.title = "Back"
-       // self.navigationItem.hidesBackButton = false
-//        let backItem = UIBarButtonItem()
-//        backItem.title = "Back"
-//        self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.backItem?.hidesBackButton = false
         self.navigationController?.navigationBar.backItem?.title = "Back"
+        
+        if self.co == "0" && self.imageListDt.count == 0{
+                btnBack.isEnabled = false
+                btnNext.isEnabled = false
+        }
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(DetailViewController.tapFunction))
+        lblPhone.isUserInteractionEnabled = true
+        lblPhone.addGestureRecognizer(tap)
+        
     }
-    //}
     
-    //    func didReceiveMemoryWarning() {
-    //        super.didReceiveMemoryWarning()
-    //        // Dispose of any resources that can be recreated.
-    //    }
+    func tapFunction(sender:UITapGestureRecognizer) {
+        print("tap call")
+        let number = self.infoDetail["phone"] as? String
+        let call = ("tel://" + number!)
+        print(call)
+        let url: NSURL = NSURL(string: call )!
+        UIApplication.shared.open(url as URL)
+        
+    }
     
+}
+
+extension UILabel{
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
-    //}
+    func underLine(){
+        if let textUnwrapped = self.text{
+            let underlineAttribute = [NSUnderlineStyleAttributeName: NSUnderlineStyle.styleSingle.rawValue]
+            let underlineAttributedString = NSAttributedString(string: textUnwrapped, attributes: underlineAttribute)
+            self.attributedText = underlineAttributedString
+        }
+    }
 }

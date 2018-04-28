@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 class ListTableView: UITableView {
+   
     
     var img : [UIImage] = [UIImage(named: "1")!,UIImage(named: "2")!,UIImage(named: "3")!,UIImage(named: "4")!,UIImage(named: "5")!,UIImage(named: "1")!,UIImage(named: "2")!,UIImage(named: "3")!,UIImage(named: "4")!,UIImage(named: "5")!]
     var address = ["Hiệp Phú, Quận 9, TP.Hồ Chí Minh","Thảo Điền, Quận 2, TP.Hồ Chí Minh","Bến Thành, Quận 1, TP.Hồ Chí Minh","Bình Thọ, Thủ Đức, TP.Hồ Chí Minh","Phú Xuân, Nhà Bè, TP.Hồ Chí Minh","Hiệp Phú, Quận 9, TP.Hồ Chí Minh","Thảo Điền, Quận 2, TP.Hồ Chí Minh","Bến Thành, Quận 1, TP.Hồ Chí Minh","Bình Thọ, Thủ Đức, TP.Hồ Chí Minh","Phú Xuân, Nhà Bè, TP.Hồ Chí Minh"]
