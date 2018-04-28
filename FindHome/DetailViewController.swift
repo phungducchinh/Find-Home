@@ -132,7 +132,9 @@ class DetailViewController: UIViewController {
         let lblPhone = UILabel()
         lblPhone.translatesAutoresizingMaskIntoConstraints = false
         lblPhone.text = "01234456569"
-        lblPhone.font = lblPhone.font.withSize(15)
+        //lblPhone.font = lblPhone.font.withSize(15)
+        lblPhone.font = UIFont.italicSystemFont(ofSize: 15)
+        lblPhone.textColor = UIColor(red: 1/255.0, green: 143/255.0, blue: 255/255.0, alpha: 1.0)
         return lblPhone
     }()
     
